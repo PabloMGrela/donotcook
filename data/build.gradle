@@ -3,7 +3,7 @@ apply plugin: 'kotlin'
 
 dependencies {
     implementation project(path: ':domain')
-    implementation "org.koin:koin-android:2.1.5"
+    implementation "org.koin:koin-android:2.1.6"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
