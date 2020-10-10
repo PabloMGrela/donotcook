@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Clean</string>
+    <string name="mapbox_access_token">pk.eyJ1IjoicGdyZWxhIiwiYSI6ImNrZzNlODVkdTA5NTIycWw2czBtNzBtMmYifQ.mWk9ZfSIsK4qN2gAkA4tCA</string>
     <string name="countries">Countries</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="restaurants">Restaurants</string>
 </resources>
