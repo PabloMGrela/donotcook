@@ -11,19 +11,18 @@ import kotlin.math.roundToInt
 
 class RestaurantCardView(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
     FrameLayout(context, attrs, defStyleAttr) {
-    
-    val restaurantName: TextView by lazy { findViewById<TextView>(R.id.restaurantName) }
-    val restaurantDistance: TextView by lazy { findViewById<TextView>(R.id.restaurantDistance) }
-    val restaurantRating: TextView by lazy { findViewById<TextView>(R.id.restaurantRating) }
-    val restaurantPrice: TextView by lazy { findViewById<TextView>(R.id.restaurantPrice) }
-    val restaurantLogo: ImageView by lazy { findViewById<ImageView>(R.id.restaurantLogo) }
-    val restaurantImage: ImageView by lazy { findViewById<ImageView>(R.id.restaurantImage) }
 
+    private val restaurantName: TextView by lazy { findViewById<TextView>(R.id.restaurantName) }
+    private val restaurantDistance: TextView by lazy { findViewById<TextView>(R.id.restaurantDistance) }
+    private val restaurantRating: TextView by lazy { findViewById<TextView>(R.id.restaurantRating) }
+    private val restaurantPrice: TextView by lazy { findViewById<TextView>(R.id.restaurantPrice) }
+    private val restaurantLogo: ImageView by lazy { findViewById<ImageView>(R.id.restaurantLogo) }
+    private val restaurantImage: ImageView by lazy { findViewById<ImageView>(R.id.restaurantImage) }
 
     var name: String? = null
         set(value) {
             field = value
-            restaurantName.text = name
+            restaurantName.text = value
         }
 
     var distance: String? = null

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/goodOne"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp">
@@ -10,11 +9,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="6dp"
-        app:cardElevation="9dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:cardElevation="9dp">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -26,12 +23,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="2dp"
+            android:scaleType="centerCrop"
             tools:src="@drawable/aliadielogo" />
     </androidx.cardview.widget.CardView>
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
@@ -53,9 +51,9 @@
 
             <ImageView
                 android:id="@+id/restaurantImage"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="centerCrop"
+                android:scaleType="fitXY"
                 android:src="@drawable/aliadie"
                 app:layout_constraintDimensionRatio="H,19:9"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -119,4 +117,4 @@
 
     </androidx.cardview.widget.CardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
