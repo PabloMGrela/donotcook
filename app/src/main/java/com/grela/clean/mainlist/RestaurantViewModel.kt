@@ -14,6 +14,8 @@ data class RestaurantViewModel(
     val price: Float,
     val distance: String,
     val rating: Float,
+    val phone: Int,
+    val address: String,
     val menus: List<MenuViewModel>
 ) : Serializable
 
@@ -46,6 +48,8 @@ fun RestaurantDomainEntity.toRestaurantViewModelEntity(currentLocation: LatLng) 
         menus.firstOrNull()?.price ?: 0f,
         currentLocation.getDistanceString(LatLng(latitude, longitude)),
         rating,
+        phone,
+        address,
         menus.toMenuViewModelEntityList()
     )
 

@@ -51,6 +51,7 @@
             <ImageView
                 android:id="@+id/restaurantImage"
                 android:layout_width="match_parent"
+                android:transitionName="testTransition"
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/aliadie"

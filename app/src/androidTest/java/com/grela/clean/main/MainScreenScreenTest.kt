@@ -3,7 +3,6 @@ package com.grela.clean.main
 import androidx.test.rule.ActivityTestRule
 import com.grela.clean.BaseUITestRunner
 import com.grela.clean.InstrumentationUtils
-import com.grela.clean.MainActivity
 import com.grela.clean.MockGenerator.createList
 import com.grela.clean.MockGenerator.givenACountryRemoteEntity
 import com.grela.clean.RemoteGenerator

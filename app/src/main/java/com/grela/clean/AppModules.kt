@@ -20,6 +20,7 @@ object AppModules {
         DomainModules.modules,
         RemoteModules.modules,
         PresentationModules.modules,
+        ViewModules.modules,
         module {
             factory { (view: Context) -> MainPresenter(view as MainViewTranslator, get(), get()) }
         }

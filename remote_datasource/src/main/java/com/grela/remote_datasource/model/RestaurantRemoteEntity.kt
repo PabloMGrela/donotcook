@@ -13,6 +13,8 @@ data class RestaurantRemoteEntity(
     @SerializedName("rating") val rating: Float,
     @SerializedName("logo") val logo: String,
     @SerializedName("image") val image: String,
+    @SerializedName("phone") val phone: Int,
+    @SerializedName("address") val address: String,
     @SerializedName("menus") val menus: List<MenuRemoteEntity>
 )
 
@@ -44,6 +46,8 @@ fun RestaurantRemoteEntity.toRestaurantDataEntity() = RestaurantDataEntity(
     rating,
     logo,
     image,
+    phone,
+    address,
     menus.toMenuDataEntityList()
 )
 

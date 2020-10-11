@@ -1,17 +1,16 @@
-package com.grela.clean
+package com.grela.clean.details
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.grela.clean.model.CountryViewModel
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.country_row.view.*
+import com.grela.clean.R
+import com.grela.clean.mainlist.SectionViewModel
+import com.grela.clean.toStringList
+import kotlinx.android.synthetic.main.module_row.view.*
 import kotlinx.android.synthetic.main.title_row.view.*
 
-class CountryAdapter(
-    val itemClickListener: (CountryViewModel) -> Unit
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MenuAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val TITLE_TYPE = 0
@@ -22,9 +21,9 @@ class CountryAdapter(
         setHasStableIds(true)
     }
 
-    private var list = mutableListOf<CountryViewModel>()
+    private var list = mutableListOf<SectionViewModel>()
 
-    fun updateData(list: List<CountryViewModel>) {
+    fun updateData(list: List<SectionViewModel>) {
         this.list.clear()
         this.list.addAll(list)
         notifyDataSetChanged()
@@ -51,28 +50,33 @@ class CountryAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is TitleViewHolder -> holder.bind()
-            is CountryViewHolder -> holder.bind(list[position - 1])
+            is RestaurantViewHolder -> holder.bind(list[position - 1])
         }
     }
 
-    private fun createTitleViewHolder(parent: ViewGroup, inflater: LayoutInflater) = TitleViewHolder(inflater.inflate(R.layout.title_row, parent, false))
+    private fun createTitleViewHolder(parent: ViewGroup, inflater: LayoutInflater) =
+        TitleViewHolder(
+            inflater.inflate(
+                R.layout.title_row, parent, false
+            )
+        )
 
     class TitleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind() {
-            itemView.title.text = itemView.context.getString(R.string.countries)
+            itemView.title.text = itemView.context.getString(R.string.menu)
         }
     }
 
-    private fun createCountryViewHolder(parent: ViewGroup, inflater: LayoutInflater) = CountryViewHolder(inflater.inflate(R.layout.country_row, parent, false))
+    private fun createCountryViewHolder(parent: ViewGroup, inflater: LayoutInflater) =
+        RestaurantViewHolder(inflater.inflate(R.layout.module_row, parent, false))
 
-    inner class CountryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(data: CountryViewModel) {
+        fun bind(sections: SectionViewModel) {
             with(itemView) {
-                countryName.text = data.name
-                setOnClickListener { itemClickListener(data) }
-                Picasso.get().load(data.flag).into(countryFlag)
+                sectionName.text = sections.name
+                sectionOptions.text = sections.options.toStringList()
             }
         }
     }

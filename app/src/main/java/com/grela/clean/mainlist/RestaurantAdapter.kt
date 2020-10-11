@@ -81,6 +81,7 @@ class RestaurantAdapter(
                 image = restaurant.image
                 price = restaurant.price
                 rating = restaurant.rating
+                transitionName = restaurant.image
                 setOnClickListener { itemClickListener(restaurant) }
             }
         }

@@ -12,6 +12,8 @@ data class RestaurantDataEntity(
     val rating: Float,
     val logo: String,
     val image: String,
+    val phone: Int,
+    val address: String,
     val menus: List<MenuDataEntity>
 )
 
@@ -45,6 +47,8 @@ fun RestaurantDataEntity.toRestaurantDomainEntity() = RestaurantDomainEntity(
     rating,
     logo,
     image,
+    phone,
+    address,
     menus.toMenuDomainEntityList()
 )
 

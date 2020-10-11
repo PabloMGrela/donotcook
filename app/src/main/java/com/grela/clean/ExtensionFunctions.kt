@@ -34,3 +34,11 @@ fun LatLng.getDistance(currentPosition: LatLng): Float {
 fun LatLng.getDistanceString(currentPosition: LatLng): String {
     return "${"%.2f".format(this.getDistance(currentPosition))} km"
 }
+
+fun List<String>.toStringList(): String {
+    var text = ""
+    this.forEach {
+        text += "$it\n"
+    }
+    return text
+}
