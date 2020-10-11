@@ -11,16 +11,15 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.grela.clean.R
 import com.grela.clean.databinding.FragmentRestaurantDetailsBinding
-import com.grela.clean.mainlist.HomeFragment.Companion.RESTAURANT_KEY
 import com.grela.clean.mainlist.RestaurantViewModel
 import com.squareup.picasso.Picasso
+import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
 
 class RestaurantDetailsFragment : Fragment() {
-
+    private lateinit var sportsArgs: RestaurantViewModel
     private lateinit var binding: FragmentRestaurantDetailsBinding
     private lateinit var adapter: MenuAdapter
     private var phoneNumber = 0
@@ -30,6 +29,9 @@ class RestaurantDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentRestaurantDetailsBinding.inflate(layoutInflater)
+        sharedElementEnterTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        postponeEnterTransition(250, TimeUnit.MILLISECONDS)
         return binding.root
     }
 
@@ -43,10 +45,9 @@ class RestaurantDetailsFragment : Fragment() {
         binding.detailsTopBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
-        val restaurant: RestaurantViewModel = arguments?.get(RESTAURANT_KEY) as RestaurantViewModel
-        setSharedElementTransitionOnEnter()
-        with(restaurant) {
-            binding.detailsImage.transitionName = image
+        val args = requireArguments()
+        sportsArgs = RestaurantDetailsFragmentArgs.fromBundle(args).selectedRestaurant
+        with(sportsArgs) {
             binding.detailsName.text = name
             binding.detailsDistance.text = distance
             Picasso.get().load(logo).into(binding.detailsLogo)
@@ -69,7 +70,13 @@ class RestaurantDetailsFragment : Fragment() {
             }
             adapter = MenuAdapter()
             binding.restaurantMenuList.adapter = adapter
-            adapter.updateData(restaurant.menus[0].sections)
+            adapter.updateData(sportsArgs.menus[0].sections)
+            binding.detailsImage.transitionName = image
+            binding.detailsLogo.transitionName = logo
+            binding.detailsName.transitionName = name
+            binding.detailsDistance.transitionName = distance
+            binding.restaurantRating.transitionName = rating.toString()
+            binding.detailsPrice.transitionName = price.toString()
         }
     }
 
@@ -85,8 +92,4 @@ class RestaurantDetailsFragment : Fragment() {
         }
     }
 
-    private fun setSharedElementTransitionOnEnter() {
-        sharedElementEnterTransition = TransitionInflater.from(context)
-            .inflateTransition(R.transition.shared_element_transition)
-    }
 }

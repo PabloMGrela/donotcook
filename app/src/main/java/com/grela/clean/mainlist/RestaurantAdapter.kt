@@ -1,19 +1,16 @@
 package com.grela.clean.mainlist
 
-import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.grela.clean.R
 import com.grela.clean.components.RestaurantCardView
-import kotlinx.android.synthetic.main.title_row.view.*
 
 class RestaurantAdapter(
-    val itemClickListener: (RestaurantViewModel) -> Unit
+    private val onClickListener: OnClickListener
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
-        private const val TITLE_TYPE = 0
         private const val ITEM_TYPE = 1
     }
 
@@ -30,41 +27,23 @@ class RestaurantAdapter(
     }
 
     override fun onCreateViewHolder(container: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val inflater = LayoutInflater.from(container.context)
         return when (viewType) {
-            TITLE_TYPE -> createTitleViewHolder(container, inflater)
             ITEM_TYPE -> createCountryViewHolder(container)
             else -> throw IllegalStateException()
         }
     }
 
-    override fun getItemCount(): Int = list.size + 1
+    override fun getItemCount(): Int = list.size
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
-            0 -> TITLE_TYPE
             else -> ITEM_TYPE
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is TitleViewHolder -> holder.bind()
-            is RestaurantViewHolder -> holder.bind(list[position - 1])
-        }
-    }
-
-    private fun createTitleViewHolder(parent: ViewGroup, inflater: LayoutInflater) =
-        TitleViewHolder(
-            inflater.inflate(
-                R.layout.title_row, parent, false
-            )
-        )
-
-    class TitleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        fun bind() {
-            itemView.title.text = itemView.context.getString(R.string.restaurants)
+            is RestaurantViewHolder -> holder.bind(list[position], onClickListener)
         }
     }
 
@@ -73,7 +52,7 @@ class RestaurantAdapter(
 
     inner class RestaurantViewHolder(view: RestaurantCardView) : RecyclerView.ViewHolder(view) {
 
-        fun bind(restaurant: RestaurantViewModel) {
+        fun bind(restaurant: RestaurantViewModel, onClickListener: OnClickListener) {
             with(itemView as RestaurantCardView) {
                 name = restaurant.name
                 distance = restaurant.distance
@@ -81,10 +60,37 @@ class RestaurantAdapter(
                 image = restaurant.image
                 price = restaurant.price
                 rating = restaurant.rating
-                transitionName = restaurant.image
-                setOnClickListener { itemClickListener(restaurant) }
+                setOnClickListener {
+                    onClickListener.onClick(
+                        restaurant,
+                        restaurantImage,
+                        restaurantLogo,
+                        restaurantName,
+                        restaurantDistance,
+                        restaurantRating,
+                        restaurantPrice
+                    )
+                }
+                restaurantName.transitionName = restaurant.name
+                restaurantLogo.transitionName = restaurant.logo
+                restaurantImage.transitionName = restaurant.image
+                restaurantRating.transitionName = restaurant.rating.toString()
+                restaurantDistance.transitionName = restaurant.distance
+                restaurantPrice.transitionName = restaurant.price.toString()
             }
         }
+    }
+
+    class OnClickListener(val clickListener: (RestaurantViewModel, ImageView, ImageView, TextView, TextView, TextView, TextView) -> Unit) {
+        fun onClick(
+            restaurant: RestaurantViewModel,
+            iconImageView: ImageView,
+            logoImageView: ImageView,
+            title: TextView,
+            distance: TextView,
+            rating: TextView,
+            price: TextView
+        ) = clickListener(restaurant, iconImageView, logoImageView, title, distance, rating, price)
     }
 
 }
