@@ -79,7 +79,7 @@ class RestaurantDetailsFragment : Fragment() {
             binding.detailsPrice.transitionName = price.toString()
             binding.resEur.transitionName = address
         }
-        binding.detailsContent.animate().alpha(1f).apply { duration = 1000 }.start()
+        binding.detailsContent.animate().alpha(1f).apply { duration = 1200 }.start()
     }
 
     private fun goBack() {
