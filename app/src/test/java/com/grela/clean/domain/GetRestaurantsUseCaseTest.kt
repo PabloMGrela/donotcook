@@ -7,7 +7,7 @@ import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
-class GetCountryUseCaseTest : BaseUnitTest() {
+class GetRestaurantsUseCaseTest : BaseUnitTest() {
 
     @Test
     fun `when trying to get country with success result, we return success`() {

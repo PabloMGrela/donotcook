@@ -5,8 +5,8 @@ import com.grela.clean.remote.ServerFixtures.enqueueServerError
 import com.grela.clean.remote.ServerFixtures.enqueueServerFile
 import com.grela.domain.DataResult
 import com.grela.remote_datasource.Network
-import com.grela.remote_datasource.SportApi
-import com.grela.remote_datasource.SportRemoteDataSourceImplementation
+import com.grela.remote_datasource.StrapiAPI
+import com.grela.remote_datasource.DoNotCookRemoteDataSourceImplementation
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.After
 import org.junit.Test
@@ -22,7 +22,7 @@ class SportRemoteDataSourceImplementationTest : BaseUnitTest() {
                 single(override = true) {
                     Network().provideApi(
                         mockServer.start(),
-                        SportApi::class.java
+                        StrapiAPI::class.java
                     )
                 }
             })
@@ -38,12 +38,12 @@ class SportRemoteDataSourceImplementationTest : BaseUnitTest() {
     @Test
     fun `given server with success response, then we receive a success data result`() {
         enqueueServerFile(mockServer, ServerFixtures.SUCCESS_RESPONSE)
-        assertThat(SportRemoteDataSourceImplementation().getSport() is DataResult.Success).isTrue()
+        assertThat(DoNotCookRemoteDataSourceImplementation().getRestaurants() is DataResult.Success).isTrue()
     }
 
     @Test
     fun `given server with error response, then we receive an error data result`() {
         enqueueServerError(mockServer, 401)
-        assertThat(SportRemoteDataSourceImplementation().getSport() is DataResult.Error).isTrue()
+        assertThat(DoNotCookRemoteDataSourceImplementation().getRestaurants() is DataResult.Error).isTrue()
     }
 }

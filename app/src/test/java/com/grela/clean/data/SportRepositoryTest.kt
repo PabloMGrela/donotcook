@@ -12,7 +12,7 @@ class SportRepositoryTest : BaseUnitTest() {
     @Test
     fun `given a repository, when try to get countries, then success result`() {
         val sportRepository = givenASportRepository(DataGenerator.RepositoryStatus.SUCCESS)
-        val result = sportRepository.getCountry()
+        val result = sportRepository.getRestaurants()
 
         assertThat(result is DataResult.Success).isTrue()
     }
@@ -20,7 +20,7 @@ class SportRepositoryTest : BaseUnitTest() {
     @Test
     fun `given a repository, when try to get countries, then error result`() {
         val sportRepository = givenASportRepository(DataGenerator.RepositoryStatus.ERROR)
-        val result = sportRepository.getCountry()
+        val result = sportRepository.getRestaurants()
 
         assertThat(result is DataResult.Error).isTrue()
     }

@@ -9,7 +9,7 @@ import com.grela.clean.MockGenerator.givenACountryRemoteEntity
 import com.grela.clean.RemoteGenerator
 import com.grela.clean.ScreenshotInstruments.takeScreenShot
 import com.grela.clean.main.MainScreenRobot.Companion.mainScreenRobot
-import com.grela.data.datasource.SportRemoteDataSourceContract
+import com.grela.data.datasource.DoNotCookRemoteDataSourceContract
 import com.grela.data.model.CountryDataEntity
 import com.grela.remote_datasource.model.toDataEntity
 import org.junit.Rule
@@ -26,7 +26,7 @@ class MainScreenScreenTest : BaseUITestRunner() {
         override fun beforeActivityLaunched() {
             super.beforeActivityLaunched()
             loadKoinModules(listOf(module {
-                factory<SportRemoteDataSourceContract>(override = true) { RemoteGenerator.givenARemoteSportDataSource(countryList) }
+                factory<DoNotCookRemoteDataSourceContract>(override = true) { RemoteGenerator.givenARemoteSportDataSource(countryList) }
             }))
         }
     }

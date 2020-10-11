@@ -1,19 +1,19 @@
 package com.grela.remote_datasource
 
 import com.grela.domain.DataResult
-import com.grela.remote_datasource.model.CountryRemoteEntity
+import com.grela.remote_datasource.model.RestaurantRemoteEntity
 import retrofit2.Call
 import retrofit2.http.GET
 import java.io.IOException
 
-interface SportApi {
+interface StrapiAPI {
 
     companion object {
-        val baseUrl = "http://192.168.1.33:8989/"
+        val baseUrl = "https://donotcook.herokuapp.com/"
     }
 
-    @GET("db")
-    fun getData(): Call<List<CountryRemoteEntity>>
+    @GET("restaurants")
+    fun getRestaurants(): Call<List<RestaurantRemoteEntity>>
 
 }
 

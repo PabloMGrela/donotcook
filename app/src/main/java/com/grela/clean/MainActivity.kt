@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.libraries.maps.model.LatLng
 import com.grela.clean.AppModules.injectActivity
 import com.grela.clean.mainlist.RestaurantAdapter
-import com.grela.clean.mainlist.RestaurantViewModel
-import com.grela.domain.model.CountryDomainEntity
+import com.grela.clean.mainlist.toRestaurantViewModelEntityList
+import com.grela.domain.model.RestaurantDomainEntity
 import com.grela.presentation.MainPresenter
 import com.grela.presentation.MainViewTranslator
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,40 +33,13 @@ class MainActivity : AppCompatActivity(), MainViewTranslator {
             Toast.makeText(this, it.name, Toast.LENGTH_LONG).show()
         }
         restaurantList.adapter = adapter
-
-        val restaurantList = listOf<RestaurantViewModel>(
-            RestaurantViewModel(
-                "Alia Die",
-                "https://imgur.com/dJOvyWO.png",
-                "https://imgur.com/KmljY4e.png",
-                10f,
-                myLocation.getDistanceString(aliaDieCoords),
-                3f
-            ),
-            RestaurantViewModel(
-                "Aroma",
-                "https://imgur.com/R4pox2e.png",
-                "https://imgur.com/R4pox2e.png",
-                10f,
-                myLocation.getDistanceString(aliaDieCoords),
-                4f
-            ), RestaurantViewModel(
-                "Alma Negra",
-                "https://imgur.com/u4Cvc5v.png",
-                "https://imgur.com/u4Cvc5v.png",
-                9.95f,
-                myLocation.getDistanceString(almaNegraCoords),
-                5f
-            )
-        )
-        adapter.updateData(restaurantList.reversed())
     }
 
     override fun showError() {
         Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
     }
 
-    override fun showCountry(r: List<CountryDomainEntity>) {
-//        adapter.updateData(r.toCountryViewModelList())
+    override fun showRestaurants(r: List<RestaurantDomainEntity>) {
+        adapter.updateData(r.toRestaurantViewModelEntityList(myLocation))
     }
 }
