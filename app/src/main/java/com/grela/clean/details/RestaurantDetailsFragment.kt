@@ -37,16 +37,16 @@ class RestaurantDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val args = requireArguments()
+        sportsArgs = RestaurantDetailsFragmentArgs.fromBundle(args).selectedRestaurant
         requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().popBackStack()
+                goBack()
             }
         })
         binding.detailsTopBar.setNavigationOnClickListener {
-            findNavController().popBackStack()
+            goBack()
         }
-        val args = requireArguments()
-        sportsArgs = RestaurantDetailsFragmentArgs.fromBundle(args).selectedRestaurant
         with(sportsArgs) {
             binding.detailsName.text = name
             binding.detailsDistance.text = distance
@@ -77,7 +77,13 @@ class RestaurantDetailsFragment : Fragment() {
             binding.detailsDistance.transitionName = distance
             binding.restaurantRating.transitionName = rating.toString()
             binding.detailsPrice.transitionName = price.toString()
+            binding.resEur.transitionName = address
         }
+        binding.detailsContent.animate().alpha(1f).apply { duration = 1000 }.start()
+    }
+
+    private fun goBack() {
+        findNavController().popBackStack()
     }
 
     override fun onRequestPermissionsResult(

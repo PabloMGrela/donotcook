@@ -68,7 +68,8 @@ class RestaurantAdapter(
                         restaurantName,
                         restaurantDistance,
                         restaurantRating,
-                        restaurantPrice
+                        restaurantPrice,
+                        restaurantEuro
                     )
                 }
                 restaurantName.transitionName = restaurant.name
@@ -77,11 +78,12 @@ class RestaurantAdapter(
                 restaurantRating.transitionName = restaurant.rating.toString()
                 restaurantDistance.transitionName = restaurant.distance
                 restaurantPrice.transitionName = restaurant.price.toString()
+                restaurantEuro.transitionName = restaurant.address
             }
         }
     }
 
-    class OnClickListener(val clickListener: (RestaurantViewModel, ImageView, ImageView, TextView, TextView, TextView, TextView) -> Unit) {
+    class OnClickListener(val clickListener: (RestaurantViewModel, ImageView, ImageView, TextView, TextView, TextView, TextView, ImageView) -> Unit) {
         fun onClick(
             restaurant: RestaurantViewModel,
             iconImageView: ImageView,
@@ -89,8 +91,18 @@ class RestaurantAdapter(
             title: TextView,
             distance: TextView,
             rating: TextView,
-            price: TextView
-        ) = clickListener(restaurant, iconImageView, logoImageView, title, distance, rating, price)
+            price: TextView,
+            eurImage: ImageView
+        ) = clickListener(
+            restaurant,
+            iconImageView,
+            logoImageView,
+            title,
+            distance,
+            rating,
+            price,
+            eurImage
+        )
     }
 
 }

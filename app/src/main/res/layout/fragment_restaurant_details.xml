@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:transitionName="nav"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:transitionName="nav">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -112,9 +112,11 @@
             tools:text="★★★★☆" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/detailsContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:alpha="0"
             app:cardElevation="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

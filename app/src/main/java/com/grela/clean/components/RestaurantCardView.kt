@@ -16,6 +16,7 @@ class RestaurantCardView(context: Context, attrs: AttributeSet? = null, defStyle
     val restaurantDistance: TextView by lazy { findViewById<TextView>(R.id.restaurantDistance) }
     val restaurantRating: TextView by lazy { findViewById<TextView>(R.id.restaurantRating) }
     val restaurantPrice: TextView by lazy { findViewById<TextView>(R.id.restaurantPrice) }
+    val restaurantEuro: ImageView by lazy { findViewById<ImageView>(R.id.resEur) }
     val restaurantLogo: ImageView by lazy { findViewById<ImageView>(R.id.restaurantLogo) }
     val restaurantImage: ImageView by lazy { findViewById<ImageView>(R.id.restaurantImage) }
 
