@@ -63,21 +63,25 @@ class RestaurantDetailsFragment : Fragment() {
                 5 -> "★★★★★"
                 else -> "-"
             }
-            binding.detailsPhone.setOnClickListener {
-                phoneNumber = phone
-                requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), 200)
 
-            }
             adapter = MenuAdapter()
-            binding.restaurantMenuList.adapter = adapter
-            adapter.updateData(sportsArgs.menus[0].sections)
-            binding.detailsImage.transitionName = image
-            binding.detailsLogo.transitionName = logo
-            binding.detailsName.transitionName = name
-            binding.detailsDistance.transitionName = distance
-            binding.restaurantRating.transitionName = rating.toString()
-            binding.detailsPrice.transitionName = price.toString()
-            binding.resEur.transitionName = address
+            with(binding) {
+                detailsPhone.animate().alpha(1f).apply { duration = 1300 }.start()
+                detailsAddress.animate().alpha(1f).apply { duration = 1300 }.start()
+                detailsPhone.setOnClickListener {
+                    phoneNumber = phone
+                    requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), 200)
+                }
+                restaurantMenuList.adapter = adapter
+                adapter.updateData(sportsArgs.menus[0].sections)
+                detailsImage.transitionName = image
+                detailsLogo.transitionName = logo
+                detailsName.transitionName = name
+                detailsDistance.transitionName = distance
+                restaurantRating.transitionName = rating.toString()
+                detailsPrice.transitionName = price.toString()
+                resEur.transitionName = address
+            }
         }
         binding.detailsContent.animate().alpha(1f).apply { duration = 1200 }.start()
     }
