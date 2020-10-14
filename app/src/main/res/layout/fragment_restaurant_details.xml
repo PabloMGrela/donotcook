@@ -1,139 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:transitionName="nav">
+    android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/detailsTopBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_close_24" />
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/detailsTopBar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/ic_baseline_close_24" />
+    <ImageView
+        android:id="@+id/detailsImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="H,29:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailsTopBar"
+        tools:src="@drawable/aliadie" />
 
-        <ImageView
-            android:id="@+id/detailsImage"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="H,29:9"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detailsTopBar"
-            tools:src="@drawable/aliadie" />
+    <ImageView
+        android:id="@+id/detailsLogo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="32dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/aliadie"
+        app:layout_constraintBottom_toBottomOf="@id/detailsImage"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailsImage" />
 
-        <ImageView
-            android:id="@+id/detailsLogo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="32dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/aliadie"
-            app:layout_constraintBottom_toBottomOf="@id/detailsImage"
-            app:layout_constraintDimensionRatio="H,1:1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detailsImage" />
+    <ImageView
+        android:id="@+id/detailsPhone"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="32dp"
+        android:alpha="0"
+        android:src="@drawable/ic_baseline_local_phone_24"
+        app:layout_constraintBottom_toBottomOf="@id/detailsLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailsLogo" />
 
-        <ImageView
-            android:id="@+id/detailsPhone"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="32dp"
-            android:alpha="0"
-            android:src="@drawable/ic_baseline_local_phone_24"
-            app:layout_constraintBottom_toBottomOf="@id/detailsLogo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/detailsLogo" />
+    <TextView
+        android:id="@+id/detailsName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/detailsLogo"
+        app:layout_constraintTop_toBottomOf="@id/detailsLogo"
+        tools:text="Zun" />
 
-        <TextView
-            android:id="@+id/detailsName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/detailsLogo"
-            app:layout_constraintTop_toBottomOf="@id/detailsLogo"
-            tools:text="Zun" />
+    <TextView
+        android:id="@+id/detailsAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:alpha="0"
+        app:layout_constraintStart_toStartOf="@id/detailsName"
+        app:layout_constraintTop_toBottomOf="@id/detailsName"
+        tools:text="Calle blablablabla" />
 
-        <TextView
-            android:id="@+id/detailsAddress"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:alpha="0"
-            app:layout_constraintStart_toStartOf="@id/detailsName"
-            app:layout_constraintTop_toBottomOf="@id/detailsName"
-            tools:text="Calle blablablabla" />
+    <ImageView
+        android:id="@+id/resEur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_euro"
+        app:layout_constraintStart_toStartOf="@id/detailsLogo"
+        app:layout_constraintTop_toBottomOf="@id/detailsAddress" />
 
-        <ImageView
-            android:id="@+id/resEur"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_euro"
-            app:layout_constraintStart_toStartOf="@id/detailsLogo"
-            app:layout_constraintTop_toBottomOf="@id/detailsAddress" />
+    <TextView
+        android:id="@+id/detailsPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@id/resEur"
+        app:layout_constraintStart_toEndOf="@id/resEur"
+        app:layout_constraintTop_toTopOf="@id/resEur"
+        tools:text="9,95" />
 
-        <TextView
-            android:id="@+id/detailsPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:gravity="center"
-            app:layout_constraintBottom_toBottomOf="@id/resEur"
-            app:layout_constraintStart_toEndOf="@id/resEur"
-            app:layout_constraintTop_toTopOf="@id/resEur"
-            tools:text="9,95" />
+    <TextView
+        android:id="@+id/detailsDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:drawableStartCompat="@drawable/ic_outline_navigation_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/detailsPrice"
+        tools:text="1,2 km" />
 
-        <TextView
-            android:id="@+id/detailsDistance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:drawableStartCompat="@drawable/ic_outline_navigation_24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/detailsPrice"
-            tools:text="1,2 km" />
+    <TextView
+        android:id="@+id/restaurantRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/detailsPrice"
+        tools:text="★★★★☆" />
 
-        <TextView
-            android:id="@+id/restaurantRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/detailsPrice"
-            tools:text="★★★★☆" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/detailsContent"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:alpha="0"
-            app:cardElevation="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/restaurantRating">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/restaurantMenuList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/module_row" />
-        </androidx.cardview.widget.CardView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/restaurantMenuList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:alpha="0"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+        app:layoutManager=".components.AwesomeLinearLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/restaurantRating"
+        tools:listitem="@layout/menu_layout" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

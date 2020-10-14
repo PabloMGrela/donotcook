@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.grela.clean.databinding.FragmentRestaurantDetailsBinding
 import com.grela.clean.mainlist.RestaurantViewModel
 import com.squareup.picasso.Picasso
@@ -73,7 +74,10 @@ class RestaurantDetailsFragment : Fragment() {
                     requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), 200)
                 }
                 restaurantMenuList.adapter = adapter
-                adapter.updateData(sportsArgs.menus[0].sections)
+                adapter.updateData(sportsArgs.menus)
+                if (sportsArgs.menus.size == 1) {
+                    restaurantMenuList.layoutManager = LinearLayoutManager(requireContext())
+                }
                 detailsImage.transitionName = image
                 detailsLogo.transitionName = logo
                 detailsName.transitionName = name
@@ -83,7 +87,7 @@ class RestaurantDetailsFragment : Fragment() {
                 resEur.transitionName = address
             }
         }
-        binding.detailsContent.animate().alpha(1f).apply { duration = 1200 }.start()
+        binding.restaurantMenuList.animate().alpha(1f).apply { duration = 1200 }.start()
     }
 
     private fun goBack() {

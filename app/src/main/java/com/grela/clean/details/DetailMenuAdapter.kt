@@ -5,10 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.grela.clean.R
-import com.grela.clean.mainlist.MenuViewModel
-import kotlinx.android.synthetic.main.menu_layout.view.*
+import com.grela.clean.mainlist.SectionViewModel
+import com.grela.clean.toStringList
+import kotlinx.android.synthetic.main.module_row.view.*
 
-class MenuAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DetailMenuAdapter(val list: List<SectionViewModel>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val ITEM_TYPE = 1
@@ -18,13 +20,6 @@ class MenuAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         setHasStableIds(true)
     }
 
-    private var list = mutableListOf<MenuViewModel>()
-
-    fun updateData(list: List<MenuViewModel>) {
-        this.list.clear()
-        this.list.addAll(list)
-        notifyDataSetChanged()
-    }
 
     override fun onCreateViewHolder(container: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(container.context)
@@ -50,14 +45,14 @@ class MenuAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
     private fun createCountryViewHolder(parent: ViewGroup, inflater: LayoutInflater) =
-        RestaurantViewHolder(inflater.inflate(R.layout.menu_layout, parent, false))
+        RestaurantViewHolder(inflater.inflate(R.layout.module_row, parent, false))
 
     inner class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(menu: MenuViewModel) {
+        fun bind(sections: SectionViewModel) {
             with(itemView) {
-                detailMenuName.text = "${menu.price}€"
-                detailMenuList.adapter = DetailMenuAdapter(menu.sections)
+                sectionName.text = sections.name
+                sectionOptions.text = sections.options.toStringList()
             }
         }
     }
