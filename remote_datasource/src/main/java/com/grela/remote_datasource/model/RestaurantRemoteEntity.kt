@@ -21,6 +21,7 @@ data class RestaurantRemoteEntity(
 data class MenuRemoteEntity(
     @SerializedName("id") val id: Int,
     @SerializedName("price") val price: Float,
+    @SerializedName("dessertAndCoffee") val dessertAndCoffee: Boolean = false,
     @SerializedName("sections") val sections: List<SectionRemoteEntity>
 )
 
@@ -34,7 +35,7 @@ fun SectionRemoteEntity.toSectionDataEntity() = SectionDataEntity(title, values)
 fun List<SectionRemoteEntity>.toSectionDataEntityList() = map { it.toSectionDataEntity() }
 
 fun MenuRemoteEntity.toMenuDataEntity() =
-    MenuDataEntity(id, price, sections.toSectionDataEntityList())
+    MenuDataEntity(id, price, dessertAndCoffee, sections.toSectionDataEntityList())
 
 fun List<MenuRemoteEntity>.toMenuDataEntityList() = map { it.toMenuDataEntity() }
 

@@ -2,9 +2,11 @@ package com.grela.clean.components
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import com.airbnb.lottie.LottieAnimationView
 import com.grela.clean.R
 import com.squareup.picasso.Picasso
 import kotlin.math.roundToInt
@@ -19,6 +21,8 @@ class RestaurantCardView(context: Context, attrs: AttributeSet? = null, defStyle
     val restaurantEuro: ImageView by lazy { findViewById<ImageView>(R.id.resEur) }
     val restaurantLogo: ImageView by lazy { findViewById<ImageView>(R.id.restaurantLogo) }
     val restaurantImage: ImageView by lazy { findViewById<ImageView>(R.id.restaurantImage) }
+    val restaurantFav: LottieAnimationView by lazy { findViewById<LottieAnimationView>(R.id.restaurantFav) }
+    val restaurantFavContainer: View by lazy { findViewById<View>(R.id.restaurantFavContainer) }
 
     var name: String? = null
         set(value) {
@@ -82,7 +86,24 @@ class RestaurantCardView(context: Context, attrs: AttributeSet? = null, defStyle
             restaurantPrice.text = "$price"
         }
 
+    var isFav: Boolean = false
+        set(value) {
+            field = value
+            if (isFav) {
+                restaurantFav.apply {
+                    speed = 2f
+                }.playAnimation()
+            } else {
+                restaurantFav.apply {
+                    speed = -2f
+                }.playAnimation()
+            }
+        }
+
     init {
         inflate(context, R.layout.restaurant_card_view_layout, this)
+        restaurantFavContainer.setOnClickListener {
+            isFav = !isFav
+        }
     }
 }

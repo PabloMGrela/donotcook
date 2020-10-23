@@ -1,6 +1,9 @@
 package com.grela.clean.mainlist
 
+import android.location.Address
+import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.libraries.maps.model.LatLng
 import com.grela.clean.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -59,6 +63,13 @@ class HomeFragment : Fragment() {
                 priceView to sports.price.toString(),
                 eurImage to sports.address
             )
+            val geo = Geocoder(requireContext(), Locale.getDefault())
+            val addresses = geo.getFromLocationName(sports.address, 1)
+            val address: Address = addresses[0]
+            val longitude: Double = address.longitude
+            val latitude: Double = address.latitude
+
+            Log.d("geocoder", "$latitude , $longitude")
 
             findNavController().navigate(direction, extras)
         }

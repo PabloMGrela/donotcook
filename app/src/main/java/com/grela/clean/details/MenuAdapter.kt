@@ -56,7 +56,8 @@ class MenuAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind(menu: MenuViewModel) {
             with(itemView) {
-                detailMenuName.text = "${menu.price}€"
+                detailMenuName.text =
+                    "${menu.price}€\n" + if (menu.dessertAndCoffee) "\uD83E\uDD67 & ☕" else "🥧 o ☕"
                 detailMenuList.adapter = DetailMenuAdapter(menu.sections)
             }
         }

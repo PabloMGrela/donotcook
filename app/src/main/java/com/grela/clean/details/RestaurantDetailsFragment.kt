@@ -55,6 +55,13 @@ class RestaurantDetailsFragment : Fragment() {
             Picasso.get().load(image).into(binding.detailsImage)
             binding.detailsPrice.text = price.toString()
             binding.detailsAddress.text = address
+            binding.detailsAddress.setOnClickListener {
+                val gmmIntentUri = Uri.parse("geo:${latLng.latitude}:${latLng.longitude}")
+                val intent = Intent(Intent.ACTION_VIEW).apply {
+                    data = gmmIntentUri
+                }
+                startActivity(intent)
+            }
             binding.restaurantRating.text = when (rating.roundToInt()) {
                 0 -> "☆☆☆☆☆"
                 1 -> "★☆☆☆☆"

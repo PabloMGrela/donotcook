@@ -16,11 +16,13 @@ data class RestaurantViewModel(
     val rating: Float,
     val phone: Int,
     val address: String,
+    val latLng: LatLng,
     val menus: List<MenuViewModel>
 ) : Serializable
 
 data class MenuViewModel(
     val price: Float,
+    val dessertAndCoffee: Boolean,
     val sections: List<SectionViewModel>
 ) : Serializable
 
@@ -35,7 +37,7 @@ fun SectionDomainEntity.toSectionViewModelEntity() =
 fun List<SectionDomainEntity>.toSectionViewModelEntityList() = map { it.toSectionViewModelEntity() }
 
 fun MenuDomainEntity.toMenuViewModelEntity() =
-    MenuViewModel(price, sections.toSectionViewModelEntityList())
+    MenuViewModel(price, dessertAndCoffee, sections.toSectionViewModelEntityList())
 
 fun List<MenuDomainEntity>.toMenuViewModelEntityList() =
     map { it.toMenuViewModelEntity() }
@@ -50,8 +52,9 @@ fun RestaurantDomainEntity.toRestaurantViewModelEntity(currentLocation: LatLng) 
         rating,
         phone,
         address,
+        LatLng(latitude, longitude),
         menus.toMenuViewModelEntityList()
     )
 
 fun List<RestaurantDomainEntity>.toRestaurantViewModelEntityList(currentLocation: LatLng) =
-    map { it.toRestaurantViewModelEntity(currentLocation) }
+    map { it.toRestaurantViewModelEntity(currentLocation) }.sortedBy { it.distance }
