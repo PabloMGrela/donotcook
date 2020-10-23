@@ -1,17 +1,22 @@
 package com.grela.clean.mainlist
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.location.LocationServices
 import com.google.android.libraries.maps.model.LatLng
 import com.grela.clean.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -22,7 +27,7 @@ class HomeFragment : Fragment() {
     private lateinit var adapter: RestaurantAdapter
     private val viewModel: HomeViewModel by viewModel()
 
-    private val myLocation = LatLng(43.3688638, -8.4345315)
+    private var userLocation: LatLng? = null
     private lateinit var binding: FragmentHomeBinding
     var restaurantList = listOf<RestaurantViewModel>()
 
@@ -36,6 +41,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getUserLocation()
         postponeEnterTransition()
         binding.restaurantList.doOnPreDraw {
             startPostponedEnterTransition()
@@ -44,8 +50,23 @@ class HomeFragment : Fragment() {
         adapter = RestaurantAdapter(sportsItemListener)
         binding.restaurantList.adapter = adapter
         viewModel.restaurantList.observeForever {
-            restaurantList = it.toRestaurantViewModelEntityList(myLocation)
+            restaurantList = it.toRestaurantViewModelEntityList(userLocation)
             adapter.updateData(restaurantList)
+        }
+    }
+
+    private fun getUserLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            LocationServices.getFusedLocationProviderClient(requireActivity()).lastLocation
+                .addOnSuccessListener { location: Location? ->
+                    location?.let {
+                        userLocation = LatLng(it.latitude, it.longitude)
+                    }
+                }
         }
     }
 

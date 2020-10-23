@@ -8,4 +8,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu">Menú</string>
     <string name="search">Search</string>
+    <string name="permission_explanation">We need to access your location to calculate the distance between you and the restaurants. Also we\'ll use it to filter the results in a radio.</string>
+    <string name="continue_text">Continue</string>
 </resources>

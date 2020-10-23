@@ -18,7 +18,7 @@ class HomeViewModel(private val getRestaurantsUseCase: GetRestaurantsUseCase) : 
     fun onCreated() {
         viewModelScope.launch(Dispatchers.IO) {
             getRestaurantsUseCase.run {
-                if(it is DataResult.Success){
+                if (it is DataResult.Success) {
                     _restaurantList.postValue(it.r)
                 }
             }

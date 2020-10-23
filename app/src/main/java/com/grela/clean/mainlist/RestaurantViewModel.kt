@@ -42,7 +42,7 @@ fun MenuDomainEntity.toMenuViewModelEntity() =
 fun List<MenuDomainEntity>.toMenuViewModelEntityList() =
     map { it.toMenuViewModelEntity() }
 
-fun RestaurantDomainEntity.toRestaurantViewModelEntity(currentLocation: LatLng) =
+fun RestaurantDomainEntity.toRestaurantViewModelEntity(currentLocation: LatLng?) =
     RestaurantViewModel(
         name,
         logo,
@@ -56,5 +56,5 @@ fun RestaurantDomainEntity.toRestaurantViewModelEntity(currentLocation: LatLng) 
         menus.toMenuViewModelEntityList()
     )
 
-fun List<RestaurantDomainEntity>.toRestaurantViewModelEntityList(currentLocation: LatLng) =
+fun List<RestaurantDomainEntity>.toRestaurantViewModelEntityList(currentLocation: LatLng?) =
     map { it.toRestaurantViewModelEntity(currentLocation) }.sortedBy { it.distance }

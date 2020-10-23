@@ -1,6 +1,9 @@
 package com.grela.clean
 
+import android.content.Context
 import android.location.Location
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.google.android.libraries.maps.model.LatLng
 
 fun Location.getDistanceString(currentPosition: Location): String {
@@ -31,8 +34,10 @@ fun LatLng.getDistance(currentPosition: LatLng): Float {
     return result[0] / 1000
 }
 
-fun LatLng.getDistanceString(currentPosition: LatLng): String {
-    return "${"%.2f".format(this.getDistance(currentPosition))} km"
+fun LatLng?.getDistanceString(currentPosition: LatLng): String {
+    return this?.let {
+        "${"%.2f".format(this.getDistance(currentPosition))} km"
+    } ?: "-"
 }
 
 fun List<String>.toStringList(): String {
@@ -41,4 +46,50 @@ fun List<String>.toStringList(): String {
         text += "$it\n"
     }
     return text
+}
+
+fun View.setSingleClickListener(l: View.OnClickListener?) {
+    setOnClickListener(l?.let {
+        OnClickListenerSingleClickWrapper(l)
+    })
+}
+
+fun View.setSingleClickListener(func: ((View) -> Unit)?) {
+    setOnClickListener(func?.let {
+        OnClickListenerSingleClickWrapper(View.OnClickListener(func))
+    })
+}
+
+fun View.visible() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.gone() {
+    this.visibility = View.GONE
+}
+
+fun View.invisible() {
+    this.visibility = View.INVISIBLE
+}
+
+fun View.hideKeyboard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(windowToken, 0)
+}
+
+class OnClickListenerSingleClickWrapper(private val inner: View.OnClickListener) :
+    View.OnClickListener {
+    companion object {
+        private const val DEFAULT_INTERVAL = 750
+    }
+
+    private var lastClickTime = 0L
+
+    override fun onClick(v: View?) {
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - lastClickTime >= DEFAULT_INTERVAL) {
+            inner.onClick(v)
+            lastClickTime = currentTime
+        }
+    }
 }
