@@ -32,7 +32,7 @@ class RestaurantDetailsFragment : Fragment() {
         binding = FragmentRestaurantDetailsBinding.inflate(layoutInflater)
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-        postponeEnterTransition(250, TimeUnit.MILLISECONDS)
+        postponeEnterTransition(150, TimeUnit.MILLISECONDS)
         return binding.root
     }
 
@@ -85,9 +85,10 @@ class RestaurantDetailsFragment : Fragment() {
                 if (sportsArgs.menus.size == 1) {
                     restaurantMenuList.layoutManager = LinearLayoutManager(requireContext())
                 }
+                binding.detailsTopBar.title = name
+                binding.detailsTopBar.transitionName = name
                 detailsImage.transitionName = image
                 detailsLogo.transitionName = logo
-                detailsName.transitionName = name
                 detailsDistance.transitionName = distance
                 restaurantRating.transitionName = rating.toString()
                 detailsPrice.transitionName = price.toString()
@@ -95,6 +96,7 @@ class RestaurantDetailsFragment : Fragment() {
             }
         }
         binding.restaurantMenuList.animate().alpha(1f).apply { duration = 1200 }.start()
+        binding.detailsName.animate().alpha(1f).apply { duration = 1200 }.start()
     }
 
     private fun goBack() {

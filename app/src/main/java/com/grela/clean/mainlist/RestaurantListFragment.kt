@@ -18,41 +18,40 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.LocationServices
 import com.google.android.libraries.maps.model.LatLng
-import com.grela.clean.databinding.FragmentHomeBinding
+import com.grela.clean.databinding.FragmentRestaurantsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class HomeFragment : Fragment() {
-
+class RestaurantListFragment : Fragment() {
     private lateinit var adapter: RestaurantAdapter
+    private lateinit var binding: FragmentRestaurantsBinding
     private val viewModel: HomeViewModel by viewModel()
-
-    private var userLocation: LatLng? = null
-    private lateinit var binding: FragmentHomeBinding
     var restaurantList = listOf<RestaurantViewModel>()
+    private var userLocation: LatLng? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(layoutInflater)
+        binding = FragmentRestaurantsBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getUserLocation()
         postponeEnterTransition()
+        viewModel.onCreated()
         binding.restaurantList.doOnPreDraw {
             startPostponedEnterTransition()
         }
-        viewModel.onCreated()
         adapter = RestaurantAdapter(sportsItemListener)
+        getUserLocation()
         binding.restaurantList.adapter = adapter
         viewModel.restaurantList.observeForever {
             restaurantList = it.toRestaurantViewModelEntityList(userLocation)
             adapter.updateData(restaurantList)
         }
+
     }
 
     private fun getUserLocation() {
@@ -73,7 +72,7 @@ class HomeFragment : Fragment() {
     private val sportsItemListener =
         RestaurantAdapter.OnClickListener { sports, imageView, logoImage, nameView, distanceView, ratingView, priceView, eurImage ->
             val direction: NavDirections =
-                HomeFragmentDirections.homeToDetails(sports)
+                RestaurantListFragmentDirections.homeToDetails(sports)
 
             val extras = FragmentNavigatorExtras(
                 imageView to sports.image,
@@ -84,15 +83,14 @@ class HomeFragment : Fragment() {
                 priceView to sports.price.toString(),
                 eurImage to sports.address
             )
-            val geo = Geocoder(requireContext(), Locale.getDefault())
-            val addresses = geo.getFromLocationName(sports.address, 1)
-            val address: Address = addresses[0]
-            val longitude: Double = address.longitude
-            val latitude: Double = address.latitude
-
-            Log.d("geocoder", "$latitude , $longitude")
+//            val geo = Geocoder(requireContext(), Locale.getDefault())
+//            val addresses = geo.getFromLocationName(sports.address, 1)
+//            val address: Address = addresses[0]
+//            val longitude: Double = address.longitude
+//            val latitude: Double = address.latitude
+//
+//            Log.d("geocoder", "$latitude , $longitude")
 
             findNavController().navigate(direction, extras)
         }
-
 }

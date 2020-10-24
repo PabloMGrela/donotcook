@@ -12,23 +12,14 @@
         tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/splashToHome2"
-            app:destination="@id/homeFragment"
+            app:destination="@id/restaurantListFragment"
             app:launchSingleTop="true" />
         <action
             android:id="@+id/splashToPermission"
             app:destination="@id/permissionFragment"
             app:launchSingleTop="true" />
     </fragment>
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.grela.clean.mainlist.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home">
 
-        <action
-            android:id="@+id/homeToDetails"
-            app:destination="@id/restaurantDetailsFragment" />
-    </fragment>
     <fragment
         android:id="@+id/restaurantDetailsFragment"
         android:name="com.grela.clean.details.RestaurantDetailsFragment"
@@ -45,7 +36,26 @@
         tools:layout="@layout/fragment_permission">
         <action
             android:id="@+id/permissionToHome"
-            app:destination="@id/homeFragment"
+            app:destination="@id/restaurantListFragment"
             app:launchSingleTop="true" />
     </fragment>
+    <fragment
+        android:id="@+id/restaurantListFragment"
+        android:name="com.grela.clean.mainlist.RestaurantListFragment"
+        android:label="RestaurantListFragment"
+        tools:layout="@layout/fragment_restaurants">
+        <action
+            android:id="@+id/homeToDetails"
+            app:destination="@id/restaurantDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.grela.clean.map.MapFragment"
+        android:label="MapFragment"
+        tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.grela.clean.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

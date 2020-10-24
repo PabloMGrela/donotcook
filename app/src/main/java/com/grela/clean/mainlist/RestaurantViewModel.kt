@@ -17,7 +17,8 @@ data class RestaurantViewModel(
     val phone: Int,
     val address: String,
     val latLng: LatLng,
-    val menus: List<MenuViewModel>
+    val menus: List<MenuViewModel>,
+    val isFav: Boolean
 ) : Serializable
 
 data class MenuViewModel(
@@ -53,7 +54,8 @@ fun RestaurantDomainEntity.toRestaurantViewModelEntity(currentLocation: LatLng?)
         phone,
         address,
         LatLng(latitude, longitude),
-        menus.toMenuViewModelEntityList()
+        menus.toMenuViewModelEntityList(),
+        isFav
     )
 
 fun List<RestaurantDomainEntity>.toRestaurantViewModelEntityList(currentLocation: LatLng?) =

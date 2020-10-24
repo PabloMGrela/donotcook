@@ -15,7 +15,8 @@ data class RestaurantRemoteEntity(
     @SerializedName("image") val image: String,
     @SerializedName("phone") val phone: Int,
     @SerializedName("address") val address: String,
-    @SerializedName("menus") val menus: List<MenuRemoteEntity>
+    @SerializedName("menus") val menus: List<MenuRemoteEntity>,
+    @SerializedName("is_favorite") val isFav: Boolean
 )
 
 data class MenuRemoteEntity(
@@ -49,7 +50,8 @@ fun RestaurantRemoteEntity.toRestaurantDataEntity() = RestaurantDataEntity(
     image,
     phone,
     address,
-    menus.toMenuDataEntityList()
+    menus.toMenuDataEntityList(),
+    isFav
 )
 
 fun List<RestaurantRemoteEntity>.toRestaurantDataEntityList() = map { it.toRestaurantDataEntity() }

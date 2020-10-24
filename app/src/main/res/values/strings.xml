@@ -10,4 +10,10 @@
     <string name="search">Search</string>
     <string name="permission_explanation">We need to access your location to calculate the distance between you and the restaurants. Also we\'ll use it to filter the results in a radio.</string>
     <string name="continue_text">Continue</string>
+    <string name="home">Home</string>
+    <string name="favs">Favs</string>
+    <string name="settings">Settings</string>
+    <string name="map">Map</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
 </resources>

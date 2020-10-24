@@ -16,7 +16,7 @@ import com.grela.clean.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
 
-    companion object{
+    companion object {
         const val FIRST_TIME_SHARED = "isFirstTime"
     }
 
@@ -31,8 +31,9 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val isFirstTime = requireContext().getSharedPreferences(FIRST_TIME_SHARED, Context.MODE_PRIVATE)
-            .getBoolean(FIRST_TIME_SHARED, true)
+        val isFirstTime =
+            requireContext().getSharedPreferences(FIRST_TIME_SHARED, Context.MODE_PRIVATE)
+                .getBoolean(FIRST_TIME_SHARED, true)
         if (isFirstTime) {
             checkLocationPermission()
         } else {
@@ -54,6 +55,8 @@ class SplashFragment : Fragment() {
     }
 
     private fun goToMain() {
-        findNavController().navigate(R.id.splashToHome2)
+        if (findNavController().currentDestination?.id == R.id.splashFragment) {
+            findNavController().navigate(R.id.splashToHome2)
+        }
     }
 }

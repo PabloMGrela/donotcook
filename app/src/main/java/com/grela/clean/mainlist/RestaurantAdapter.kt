@@ -60,6 +60,11 @@ class RestaurantAdapter(
                 image = restaurant.image
                 price = restaurant.price
                 rating = restaurant.rating
+                if (isFav) {
+                    restaurantFav.progress = 1f
+                } else {
+                    restaurantFav.progress = 0f
+                }
                 setOnClickListener {
                     onClickListener.onClick(
                         restaurant,
