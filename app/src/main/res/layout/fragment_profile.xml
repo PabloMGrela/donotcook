@@ -17,6 +17,51 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/profileAddRestaurantRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="@string/add_restaurant"
+        android:transitionName="@string/add_restaurant"
+        app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileName" />
+
+    <com.grela.clean.components.GrelaEditText
+        android:id="@+id/profileUsernameField"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:imeOptions="actionNext"
+        app:hint="@string/username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileAddRestaurantRow" />
+
+    <com.grela.clean.components.GrelaEditText
+        android:id="@+id/profilePasswordField"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:imeOptions="actionSend"
+        android:inputType="textPassword"
+        app:hint="@string/password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileUsernameField"
+        app:passwordToggleEnabled="true" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/profileLoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:text="@string/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profilePasswordField" />
+
+    <TextView
         android:id="@+id/profileLogoutRow"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

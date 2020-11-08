@@ -43,7 +43,7 @@ class RestaurantCardView(context: Context, attrs: AttributeSet? = null, defStyle
     var logo: String? = null
         set(value) {
             field = value
-            if (value != null) {
+            if (value != null && value.isNotBlank()) {
                 Picasso.get()
                     .load(value)
                     .error(R.drawable.aliadie)
@@ -56,7 +56,7 @@ class RestaurantCardView(context: Context, attrs: AttributeSet? = null, defStyle
     var image: String? = null
         set(value) {
             field = value
-            if (image != null) {
+            if (value != null && value.isNotBlank()) {
                 Picasso.get()
                     .load(value)
                     .error(R.drawable.aliadie)

@@ -3,6 +3,7 @@ package com.grela.remote_datasource
 import com.grela.data.datasource.DoNotCookRemoteDataSourceContract
 import com.grela.data.model.RestaurantDataEntity
 import com.grela.domain.DataResult
+import com.grela.remote_datasource.model.LoginRemoteEntity
 import com.grela.remote_datasource.model.toRestaurantDataEntityList
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -14,4 +15,9 @@ class DoNotCookRemoteDataSourceImplementation : DoNotCookRemoteDataSourceContrac
     override fun getRestaurants(): DataResult<Error, List<RestaurantDataEntity>> {
         return safeCall({ api.getRestaurants() }, { list -> list.toRestaurantDataEntityList() })
     }
+
+    override fun login(username: String, pass: String): DataResult<Error, Any> {
+        return safeCall({ api.login(LoginRemoteEntity(username, pass)) }, { _ -> Any() })
+    }
+
 }

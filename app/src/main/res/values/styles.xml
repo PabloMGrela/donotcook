@@ -7,4 +7,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <declare-styleable name="GrelaEditText">
+        <attr name="text" />
+        <attr name="hint" />
+        <attr name="maxLength" />
+        <attr name="android:inputType" />
+        <attr name="android:imeOptions" />
+        <attr name="passwordToggleEnabled" />
+    </declare-styleable>
+
+    <attr name="text" format="string" />
+
+    <attr name="hint" format="string" />
+
+    <attr name="maxLength" format="integer" />
+
 </resources>

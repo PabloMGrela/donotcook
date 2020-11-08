@@ -16,4 +16,13 @@
     <string name="map">Map</string>
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
+    <string name="add_restaurant">Add restaurant</string>
+    <string name="restaurant_name">Restaurant name</string>
+    <string name="restaurant_address">Address</string>
+    <string name="restaurant_phone">Phone number</string>
+    <string name="add_restaurant_instruction">Are you already in Google? then search your restaurant name and we\'ll fill the needed data for you!</string>
+    <string name="not_google">No, I\'m not in Google</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 </resources>

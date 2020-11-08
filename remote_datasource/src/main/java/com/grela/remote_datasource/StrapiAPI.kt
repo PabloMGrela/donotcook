@@ -1,9 +1,13 @@
 package com.grela.remote_datasource
 
 import com.grela.domain.DataResult
+import com.grela.remote_datasource.model.LoginRemoteEntity
 import com.grela.remote_datasource.model.RestaurantRemoteEntity
+import com.grela.remote_datasource.model.UserRemoteEntity
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import java.io.IOException
 
 interface StrapiAPI {
@@ -14,6 +18,9 @@ interface StrapiAPI {
 
     @GET("restaurants")
     fun getRestaurants(): Call<List<RestaurantRemoteEntity>>
+
+    @POST("auth/local")
+    fun login(@Body loginParams: LoginRemoteEntity): Call<UserRemoteEntity>
 
 }
 
