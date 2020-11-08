@@ -57,5 +57,15 @@
         android:id="@+id/profileFragment"
         android:name="com.grela.clean.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/profileToAddRestaurant"
+            app:destination="@id/addRestaurantFragment"
+            app:enterAnim="@anim/slide_up" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRestaurantFragment"
+        android:name="com.grela.clean.addrestaurant.AddRestaurantFragment"
+        android:label="AddRestaurantFragment"
+        tools:layout="@layout/fragment_add_restaurant" />
 </navigation>

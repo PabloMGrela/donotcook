@@ -2,11 +2,8 @@ package com.grela.clean.mainlist
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.location.Address
-import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,14 +17,16 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.libraries.maps.model.LatLng
 import com.grela.clean.databinding.FragmentRestaurantsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
 
 class RestaurantListFragment : Fragment() {
+    companion object {
+        var userLocation: LatLng? = null
+        var restaurantList = listOf<RestaurantViewModel>()
+    }
+
     private lateinit var adapter: RestaurantAdapter
     private lateinit var binding: FragmentRestaurantsBinding
     private val viewModel: HomeViewModel by viewModel()
-    var restaurantList = listOf<RestaurantViewModel>()
-    private var userLocation: LatLng? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

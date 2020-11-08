@@ -1,6 +1,9 @@
 package com.grela.clean.permissions
 
 import android.Manifest
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.ValueAnimator
 import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieDrawable
 import com.grela.clean.R
 import com.grela.clean.databinding.FragmentPermissionBinding
 import com.grela.clean.setSingleClickListener
@@ -30,6 +34,16 @@ class PermissionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.permissionImage.apply {
+            addAnimatorListener(object : AnimatorListenerAdapter(){
+                override fun onAnimationEnd(animation: Animator?) {
+                    setMinFrame(18)
+                    repeatCount = ValueAnimator.INFINITE
+                    removeAllAnimatorListeners()
+                    playAnimation()
+                }
+            })
+        }
         binding.permissionButton.setSingleClickListener {
             makeRequest()
         }

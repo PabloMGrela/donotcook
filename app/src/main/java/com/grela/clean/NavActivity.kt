@@ -22,11 +22,11 @@ class NavActivity : AppCompatActivity() {
         binding.navHostBottomNavigation.setupWithNavController(navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.splashFragment -> {
+                R.id.splashFragment, R.id.permissionFragment -> {
                     binding.navHostBottomNavigation.gone()
                     binding.navToolbar.gone()
                 }
-                R.id.restaurantDetailsFragment -> {
+                R.id.restaurantDetailsFragment, R.id.addRestaurantFragment -> {
                     binding.navHostBottomNavigation.gone()
                     binding.navToolbar.decreaseAndGone()
                 }

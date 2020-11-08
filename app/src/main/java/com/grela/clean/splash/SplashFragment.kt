@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.libraries.maps.SupportMapFragment
 import com.grela.clean.R
 import com.grela.clean.databinding.FragmentSplashBinding
 
@@ -31,13 +32,17 @@ class SplashFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val isFirstTime =
-            requireContext().getSharedPreferences(FIRST_TIME_SHARED, Context.MODE_PRIVATE)
-                .getBoolean(FIRST_TIME_SHARED, true)
-        if (isFirstTime) {
-            checkLocationPermission()
-        } else {
-            goToMain()
+        val mapFragment = childFragmentManager
+            .findFragmentById(R.id.dummyMap) as SupportMapFragment
+        mapFragment.getMapAsync {
+            val isFirstTime =
+                requireContext().getSharedPreferences(FIRST_TIME_SHARED, Context.MODE_PRIVATE)
+                    .getBoolean(FIRST_TIME_SHARED, true)
+            if (isFirstTime) {
+                checkLocationPermission()
+            } else {
+                goToMain()
+            }
         }
     }
 
