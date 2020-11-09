@@ -12,9 +12,9 @@ data class UserRemoteEntity(
     @SerializedName("username") val userName: String,
     @SerializedName("email") val email: String,
     @SerializedName("role") val role: RoleRemoteEntity
-) {
-    fun toProfileGeneralModel(): ProfileGeneralModel = ProfileGeneralModel(email)
-}
+)
+
+fun UserRemoteWrapper.toProfileGeneralModel() = ProfileGeneralModel(user.email, token)
 
 data class RoleRemoteEntity(
     @SerializedName("id") val roleId: Int

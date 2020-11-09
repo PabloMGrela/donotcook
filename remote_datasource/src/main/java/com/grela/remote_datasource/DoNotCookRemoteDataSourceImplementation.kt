@@ -5,6 +5,7 @@ import com.grela.data.model.RestaurantDataEntity
 import com.grela.domain.DataResult
 import com.grela.domain.model.ProfileGeneralModel
 import com.grela.remote_datasource.model.LoginRemoteEntity
+import com.grela.remote_datasource.model.toProfileGeneralModel
 import com.grela.remote_datasource.model.toRestaurantDataEntityList
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -20,7 +21,7 @@ class DoNotCookRemoteDataSourceImplementation : DoNotCookRemoteDataSourceContrac
     override fun login(username: String, pass: String): DataResult<Error, ProfileGeneralModel> {
         return safeCall(
             { api.login(LoginRemoteEntity(username, pass)) },
-            { profile -> profile.user.toProfileGeneralModel() })
+            { profile -> profile.toProfileGeneralModel() })
     }
 
 }

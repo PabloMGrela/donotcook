@@ -1,4 +1,4 @@
-package com.grela.domain.interactor
+package com.grela.domain.interactor.profile
 
 import com.grela.domain.DataResult
 import com.grela.domain.RestaurantRepositoryContract

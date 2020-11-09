@@ -28,4 +28,12 @@ class RestaurantRepository(
             }
         }
     }
+
+    override fun getUser(): DataResult<Error, ProfileGeneralModel> {
+        return doNotCookLocalDataSource.getProfile()
+    }
+
+    override fun logout() {
+        doNotCookLocalDataSource.deleteProfile()
+    }
 }

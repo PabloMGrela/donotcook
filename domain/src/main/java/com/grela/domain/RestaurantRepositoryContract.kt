@@ -7,4 +7,6 @@ interface RestaurantRepositoryContract {
 
     fun getRestaurants(): DataResult<Error, List<RestaurantDomainEntity>>
     fun login(userName: String, password: String): DataResult<Error, ProfileGeneralModel>
+    fun getUser(): DataResult<Error, ProfileGeneralModel>
+    fun logout()
 }
