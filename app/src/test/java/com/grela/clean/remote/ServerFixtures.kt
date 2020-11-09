@@ -4,7 +4,7 @@ import java.io.IOException
 
 object ServerFixtures {
 
-    const val SUCCESS_RESPONSE = "getCountry.json"
+    const val SUCCESS_RESPONSE = "getRestaurants.json"
 
     @Throws(IOException::class)
     fun enqueueServerFile(server: MockServer, file: String) {

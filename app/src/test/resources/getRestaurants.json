@@ -1,0 +1,333 @@
+[
+  {
+    "id": 3,
+    "name": "Gasthof",
+    "latitude": 43.3709211,
+    "longitude": -8.404278800000002,
+    "address": "Av. de Pedro Barrié de la Maza, 19, 15003 La Coruña, Spain",
+    "phone": "981204890",
+    "created_at": "2020-10-29T14:17:42.182Z",
+    "updated_at": "2020-10-29T15:38:53.685Z",
+    "is_active": true,
+    "header_image": {
+      "id": 6,
+      "name": "Header Gasthof",
+      "alternativeText": null,
+      "caption": null,
+      "width": 550,
+      "height": 367,
+      "formats": {
+        "small": {
+          "ext": "",
+          "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603981109/small_Header_Gasthof_a3b37d29f4.png",
+          "hash": "small_Header_Gasthof_a3b37d29f4",
+          "mime": "image/png",
+          "name": "small_Header Gasthof",
+          "path": null,
+          "size": 316.08,
+          "width": 500,
+          "height": 334,
+          "provider_metadata": {
+            "public_id": "small_Header_Gasthof_a3b37d29f4",
+            "resource_type": "image"
+          }
+        },
+        "thumbnail": {
+          "ext": "",
+          "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603981108/thumbnail_Header_Gasthof_a3b37d29f4.png",
+          "hash": "thumbnail_Header_Gasthof_a3b37d29f4",
+          "mime": "image/png",
+          "name": "thumbnail_Header Gasthof",
+          "path": null,
+          "size": 78.13,
+          "width": 234,
+          "height": 156,
+          "provider_metadata": {
+            "public_id": "thumbnail_Header_Gasthof_a3b37d29f4",
+            "resource_type": "image"
+          }
+        }
+      },
+      "hash": "Header_Gasthof_a3b37d29f4",
+      "ext": "",
+      "mime": "image/png",
+      "size": 339.28,
+      "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603981107/Header_Gasthof_a3b37d29f4.png",
+      "previewUrl": null,
+      "provider": "cloudinary",
+      "provider_metadata": {
+        "public_id": "Header_Gasthof_a3b37d29f4",
+        "resource_type": "image"
+      },
+      "created_at": "2020-10-29T14:18:29.611Z",
+      "updated_at": "2020-10-29T14:18:29.611Z"
+    },
+    "logo_image": {
+      "id": 5,
+      "name": "Logo Gasthof",
+      "alternativeText": null,
+      "caption": null,
+      "width": 400,
+      "height": 400,
+      "formats": {
+        "thumbnail": {
+          "ext": "",
+          "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603981098/thumbnail_Logo_Gasthof_8ea834421c.png",
+          "hash": "thumbnail_Logo_Gasthof_8ea834421c",
+          "mime": "image/png",
+          "name": "thumbnail_Logo Gasthof",
+          "path": null,
+          "size": 21.32,
+          "width": 156,
+          "height": 156,
+          "provider_metadata": {
+            "public_id": "thumbnail_Logo_Gasthof_8ea834421c",
+            "resource_type": "image"
+          }
+        }
+      },
+      "hash": "Logo_Gasthof_8ea834421c",
+      "ext": "",
+      "mime": "image/png",
+      "size": 28.03,
+      "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603981097/Logo_Gasthof_8ea834421c.png",
+      "previewUrl": null,
+      "provider": "cloudinary",
+      "provider_metadata": {
+        "public_id": "Logo_Gasthof_8ea834421c",
+        "resource_type": "image"
+      },
+      "created_at": "2020-10-29T14:18:18.484Z",
+      "updated_at": "2020-10-29T14:18:18.484Z"
+    },
+    "menus": [],
+    "rates": [],
+    "is_favorite": false,
+    "is_mine": false,
+    "rating": null
+  },
+  {
+    "id": 4,
+    "name": "Corner Hut",
+    "latitude": 42.2321586,
+    "longitude": -8.7206114,
+    "address": "R. Simón Bolívar, 18, 36203 Vigo, Pontevedra, Spain",
+    "phone": "986472718",
+    "created_at": "2020-10-29T14:52:11.274Z",
+    "updated_at": "2020-10-29T15:38:42.120Z",
+    "is_active": true,
+    "header_image": {
+      "id": 8,
+      "name": "Header Corner Hut",
+      "alternativeText": null,
+      "caption": null,
+      "width": 640,
+      "height": 409,
+      "formats": {
+        "small": {
+          "ext": "",
+          "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603983137/small_Header_Corner_Hut_1c7789a36a.png",
+          "hash": "small_Header_Corner_Hut_1c7789a36a",
+          "mime": "image/png",
+          "name": "small_Header Corner Hut",
+          "path": null,
+          "size": 365.22,
+          "width": 500,
+          "height": 320,
+          "provider_metadata": {
+            "public_id": "small_Header_Corner_Hut_1c7789a36a",
+            "resource_type": "image"
+          }
+        },
+        "thumbnail": {
+          "ext": "",
+          "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603983136/thumbnail_Header_Corner_Hut_1c7789a36a.png",
+          "hash": "thumbnail_Header_Corner_Hut_1c7789a36a",
+          "mime": "image/png",
+          "name": "thumbnail_Header Corner Hut",
+          "path": null,
+          "size": 93.99,
+          "width": 244,
+          "height": 156,
+          "provider_metadata": {
+            "public_id": "thumbnail_Header_Corner_Hut_1c7789a36a",
+            "resource_type": "image"
+          }
+        }
+      },
+      "hash": "Header_Corner_Hut_1c7789a36a",
+      "ext": "",
+      "mime": "image/png",
+      "size": 531.79,
+      "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603983134/Header_Corner_Hut_1c7789a36a.png",
+      "previewUrl": null,
+      "provider": "cloudinary",
+      "provider_metadata": {
+        "public_id": "Header_Corner_Hut_1c7789a36a",
+        "resource_type": "image"
+      },
+      "created_at": "2020-10-29T14:52:17.818Z",
+      "updated_at": "2020-10-29T14:52:17.818Z"
+    },
+    "logo_image": {
+      "id": 7,
+      "name": "Logo Corner Hut",
+      "alternativeText": null,
+      "caption": null,
+      "width": 227,
+      "height": 203,
+      "formats": {
+        "thumbnail": {
+          "ext": "",
+          "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603983133/thumbnail_Logo_Corner_Hut_3553de59de.png",
+          "hash": "thumbnail_Logo_Corner_Hut_3553de59de",
+          "mime": "image/png",
+          "name": "thumbnail_Logo Corner Hut",
+          "path": null,
+          "size": 16.26,
+          "width": 174,
+          "height": 156,
+          "provider_metadata": {
+            "public_id": "thumbnail_Logo_Corner_Hut_3553de59de",
+            "resource_type": "image"
+          }
+        }
+      },
+      "hash": "Logo_Corner_Hut_3553de59de",
+      "ext": "",
+      "mime": "image/png",
+      "size": 21.4,
+      "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603983132/Logo_Corner_Hut_3553de59de.png",
+      "previewUrl": null,
+      "provider": "cloudinary",
+      "provider_metadata": {
+        "public_id": "Logo_Corner_Hut_3553de59de",
+        "resource_type": "image"
+      },
+      "created_at": "2020-10-29T14:52:13.671Z",
+      "updated_at": "2020-10-29T14:52:13.671Z"
+    },
+    "menus": [],
+    "rates": [],
+    "is_favorite": false,
+    "is_mine": false,
+    "rating": null
+  },
+  {
+    "id": 1,
+    "name": "Terreo Cocina Casual",
+    "latitude": 43.3691133,
+    "longitude": -8.4038959,
+    "address": "R. San Andrés, 109, 15003 A Coruña, Spain",
+    "phone": "881917182",
+    "created_at": "2020-10-29T14:10:02.522Z",
+    "updated_at": "2020-11-07T08:06:29.024Z",
+    "is_active": true,
+    "header_image": {
+      "id": 3,
+      "name": "Header Terreo Cocina Casual",
+      "alternativeText": null,
+      "caption": null,
+      "width": 550,
+      "height": 309,
+      "formats": {
+        "small": {
+          "ext": "",
+          "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603980751/small_Header_Terreo_Cocina_Casual_0a3b843e48.png",
+          "hash": "small_Header_Terreo_Cocina_Casual_0a3b843e48",
+          "mime": "image/png",
+          "name": "small_Header Terreo Cocina Casual",
+          "path": null,
+          "size": 256.11,
+          "width": 500,
+          "height": 281,
+          "provider_metadata": {
+            "public_id": "small_Header_Terreo_Cocina_Casual_0a3b843e48",
+            "resource_type": "image"
+          }
+        },
+        "thumbnail": {
+          "ext": "",
+          "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603980750/thumbnail_Header_Terreo_Cocina_Casual_0a3b843e48.png",
+          "hash": "thumbnail_Header_Terreo_Cocina_Casual_0a3b843e48",
+          "mime": "image/png",
+          "name": "thumbnail_Header Terreo Cocina Casual",
+          "path": null,
+          "size": 74.36,
+          "width": 245,
+          "height": 138,
+          "provider_metadata": {
+            "public_id": "thumbnail_Header_Terreo_Cocina_Casual_0a3b843e48",
+            "resource_type": "image"
+          }
+        }
+      },
+      "hash": "Header_Terreo_Cocina_Casual_0a3b843e48",
+      "ext": "",
+      "mime": "image/png",
+      "size": 259.12,
+      "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603980749/Header_Terreo_Cocina_Casual_0a3b843e48.png",
+      "previewUrl": null,
+      "provider": "cloudinary",
+      "provider_metadata": {
+        "public_id": "Header_Terreo_Cocina_Casual_0a3b843e48",
+        "resource_type": "image"
+      },
+      "created_at": "2020-10-29T14:12:31.563Z",
+      "updated_at": "2020-10-29T14:12:31.563Z"
+    },
+    "logo_image": {
+      "id": 4,
+      "name": "Logo Terreo Cocina Casual",
+      "alternativeText": null,
+      "caption": null,
+      "width": 176,
+      "height": 175,
+      "formats": {
+        "thumbnail": {
+          "ext": "",
+          "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603980769/thumbnail_Logo_Terreo_Cocina_Casual_ce4f679708.png",
+          "hash": "thumbnail_Logo_Terreo_Cocina_Casual_ce4f679708",
+          "mime": "image/png",
+          "name": "thumbnail_Logo Terreo Cocina Casual",
+          "path": null,
+          "size": 14.5,
+          "width": 157,
+          "height": 156,
+          "provider_metadata": {
+            "public_id": "thumbnail_Logo_Terreo_Cocina_Casual_ce4f679708",
+            "resource_type": "image"
+          }
+        }
+      },
+      "hash": "Logo_Terreo_Cocina_Casual_ce4f679708",
+      "ext": "",
+      "mime": "image/png",
+      "size": 15.87,
+      "url": "https://res.cloudinary.com/tbearsoft-restaurants/image/upload/v1603980768/Logo_Terreo_Cocina_Casual_ce4f679708.png",
+      "previewUrl": null,
+      "provider": "cloudinary",
+      "provider_metadata": {
+        "public_id": "Logo_Terreo_Cocina_Casual_ce4f679708",
+        "resource_type": "image"
+      },
+      "created_at": "2020-10-29T14:12:49.321Z",
+      "updated_at": "2020-10-29T14:12:49.321Z"
+    },
+    "menus": [],
+    "rates": [
+      {
+        "id": 1,
+        "user": 1,
+        "restaurant": 1,
+        "value": 4,
+        "comment": null,
+        "created_at": "2020-10-29T16:03:07.607Z",
+        "updated_at": "2020-10-30T07:25:38.770Z"
+      }
+    ],
+    "is_favorite": false,
+    "is_mine": false,
+    "rating": 4
+  }
+]

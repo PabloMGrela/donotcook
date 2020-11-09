@@ -5,7 +5,6 @@ import com.grela.clean.BaseUITestRunner
 import com.grela.clean.InstrumentationUtils
 import com.grela.clean.MockGenerator.createList
 import com.grela.clean.MockGenerator.givenACountryRemoteEntity
-import com.grela.clean.RemoteGenerator
 import com.grela.clean.ScreenshotInstruments.takeScreenShot
 import com.grela.clean.main.MainScreenRobot.Companion.mainScreenRobot
 import com.grela.data.datasource.DoNotCookRemoteDataSourceContract
