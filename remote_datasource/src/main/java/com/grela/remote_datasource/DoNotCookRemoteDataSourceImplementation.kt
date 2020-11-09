@@ -27,5 +27,6 @@ class DoNotCookRemoteDataSourceImplementation : DoNotCookRemoteDataSourceContrac
     }
 
 
-    private fun getAuthHeader(token: String) = mapOf("Authorization" to "Bearer $token")
+    private fun getAuthHeader(token: String) =
+        if (token.isEmpty()) mapOf() else mapOf("Authorization" to "Bearer $token")
 }
