@@ -26,7 +26,7 @@ class ProfileViewModel(
         val isLoggedIn =
             context.getSharedPreferences(IS_AUTHENTICATED, Context.MODE_PRIVATE)
                 .getBoolean(IS_AUTHENTICATED, false)
-        if (isLoggedIn) setLoginStatus() else setLogoutStatus()
+        if (isLoggedIn) setLoginStatus("") else setLogoutStatus()
 
     }
 
@@ -34,7 +34,7 @@ class ProfileViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             val result = loginUseCase.execute(user, pass)
             if (result is DataResult.Success) {
-                setLoginStatus()
+                setLoginStatus(result.r.userName)
             } else {
                 setLogoutStatus()
             }
@@ -49,12 +49,12 @@ class ProfileViewModel(
         setLogoutStatus()
     }
 
-    private fun setLoginStatus() {
+    private fun setLoginStatus(name: String) {
         context.getSharedPreferences(IS_AUTHENTICATED, Context.MODE_PRIVATE).edit()
             .putBoolean(
                 IS_AUTHENTICATED, true
             ).apply()
-        _profileStatus.postValue(Profile(ProfileStatus.LOGGED_IN))
+        _profileStatus.postValue(Profile(ProfileStatus.LOGGED_IN, name))
     }
 
     private fun setLogoutStatus() {

@@ -1,5 +1,6 @@
 package com.grela.clean
 
+import LocalModules
 import android.app.Activity
 import android.content.Context
 import com.grela.data.DataModules
@@ -21,6 +22,7 @@ object AppModules {
         RemoteModules.modules,
         PresentationModules.modules,
         ViewModules.modules,
+        LocalModules.modules,
         module {
             factory { (view: Context) -> MainPresenter(view as MainViewTranslator, get(), get()) }
         }

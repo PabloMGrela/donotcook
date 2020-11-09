@@ -29,7 +29,7 @@ class ProfileFragment : Fragment() {
         viewModel.profileStatus.observe(this) {
             when (it.status) {
                 ProfileStatus.LOGGED_OUT -> showLoggedOutLayout()
-                ProfileStatus.LOGGED_IN -> showLoggedInLayout()
+                ProfileStatus.LOGGED_IN -> showLoggedInLayout(it.name)
             }
         }
         binding.profileAddRestaurantRow.transitionName = getString(R.string.add_restaurant)
@@ -56,10 +56,11 @@ class ProfileFragment : Fragment() {
         binding.profilePasswordField.hideKeyboard()
     }
 
-    private fun showLoggedInLayout() {
+    private fun showLoggedInLayout(name: String) {
         binding.profileName.visible()
         binding.profileAddRestaurantRow.visible()
         binding.profileLogoutRow.visible()
+        binding.profileName.text = name
 
         binding.profilePasswordField.gone()
         binding.profileUsernameField.gone()

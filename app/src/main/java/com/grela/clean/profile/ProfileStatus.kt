@@ -1,7 +1,8 @@
 package com.grela.clean.profile
 
 data class Profile(
-    val status: ProfileStatus
+    val status: ProfileStatus,
+    val name: String = ""
 )
 
 enum class ProfileStatus {

@@ -7,6 +7,6 @@ import org.koin.dsl.module
 object DataModules {
 
     val modules = module {
-        factory<RestaurantRepositoryContract> { RestaurantRepository(get()) }
+        factory<RestaurantRepositoryContract> { RestaurantRepository(get(), get()) }
     }
 }
