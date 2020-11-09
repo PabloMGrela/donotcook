@@ -95,30 +95,69 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="32dp"
-        android:visibility="gone"
         android:text="@string/not_google"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/addRestaurantPhotoList"
+    <TextView
+        android:id="@+id/editRestaurantLogoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/logo"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addRestaurantPhone" />
+
+    <ImageView
+        android:id="@+id/editRestaurantLogoImage"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@id/editRestaurantLogoLabel"
+        app:layout_constraintTop_toBottomOf="@id/editRestaurantLogoLabel"
+        tools:src="@drawable/aliadie" />
+
+    <TextView
+        android:id="@+id/editRestaurantHeaderLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/header"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/editRestaurantLogoImage"
+        app:layout_constraintTop_toTopOf="@id/editRestaurantLogoLabel" />
+
+    <ImageView
+        android:id="@+id/editRestaurantHeaderImage"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@android:color/transparent"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:layout_height="75dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/editRestaurantHeaderLabel"
+        app:layout_constraintTop_toTopOf="@id/editRestaurantLogoImage"
+        tools:src="@drawable/aliadie" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/createRestaurantButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/create_restaurant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:listitem="@layout/photo_row" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/dataGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:constraint_referenced_ids="addRestaurantPhone,addRestaurantAddress,addRestaurantName" />
+        app:constraint_referenced_ids="createRestaurantButton,addRestaurantPhone,editRestaurantHeaderLabel,editRestaurantLogoImage,editRestaurantLogoLabel,editRestaurantHeaderImage,addRestaurantAddress,addRestaurantName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

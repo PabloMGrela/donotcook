@@ -1,12 +1,17 @@
 package com.grela.clean.profile.addrestaurant
 
+import android.Manifest
+import android.app.Activity.RESULT_OK
 import android.app.SearchManager
 import android.content.ContentValues
+import android.content.Intent
 import android.database.Cursor
 import android.database.MatrixCursor
-import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.provider.BaseColumns
+import android.provider.MediaStore
 import android.transition.TransitionInflater
 import android.util.Log
 import android.view.LayoutInflater
@@ -56,6 +61,17 @@ class AddRestaurantFragment : Fragment() {
         binding.addRestaurantButton.setSingleClickListener {
             moveSearchView()
         }
+        binding.editRestaurantLogoImage.setSingleClickListener {
+            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 200)
+        }
+
+        binding.editRestaurantHeaderImage.setSingleClickListener {
+            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 201)
+        }
+        binding.createRestaurantButton.setSingleClickListener {
+
+        }
+
     }
 
     private fun configureSearch() {
@@ -189,20 +205,57 @@ class AddRestaurantFragment : Fragment() {
     }
 
     private fun requestPictures(metada: List<PhotoMetadata>) {
-        val bitmapList = mutableListOf<Bitmap>()
-        val adapter = PhotoCarouselAdapter(bitmapList)
-        metada.forEach { photoMetadata ->
-            val photoRequest = FetchPhotoRequest.builder(photoMetadata)
-                .build()
-            placesClient.fetchPhoto(photoRequest)
-                .addOnSuccessListener { fetchPhotoResponse: FetchPhotoResponse ->
-                    val bitmap = fetchPhotoResponse.bitmap
-                    Log.d("bitmap", fetchPhotoResponse.toString())
-                    adapter.addPhoto(bitmap)
-                }
-
-        }
-        binding.addRestaurantPhotoList.adapter = adapter
+        val photoRequest = FetchPhotoRequest.builder(metada.first())
+            .build()
+        placesClient.fetchPhoto(photoRequest)
+            .addOnSuccessListener { fetchPhotoResponse: FetchPhotoResponse ->
+                val bitmap = fetchPhotoResponse.bitmap
+                binding.editRestaurantHeaderImage.setImageBitmap(bitmap)
+            }
+        binding.editRestaurantLogoImage.setImageResource(R.drawable.ic_baseline_add_a_photo_24)
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK && data != null) {
+            val selectedImage: Uri? = data.data
+            val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+            if (selectedImage != null) {
+                val cursor: Cursor? = requireActivity().contentResolver.query(
+                    selectedImage,
+                    filePathColumn, null, null, null
+                )
+                if (cursor != null) {
+                    cursor.moveToFirst()
+                    val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+                    val picturePath = cursor.getString(columnIndex)
+                    val picture = BitmapFactory.decodeFile(
+                        picturePath
+                    )
+                    if (requestCode == 1) {
+                        binding.editRestaurantLogoImage.setImageBitmap(picture)
+                    } else {
+                        binding.editRestaurantHeaderImage.setImageBitmap(picture)
+                    }
+                    cursor.close()
+                }
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 200 && permissions.contentEquals(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE))) {
+            val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(pickPhoto, 1)
+        } else if (requestCode == 201 && permissions.contentEquals(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE))) {
+            val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(pickPhoto, 2)
+        }
+    }
 }

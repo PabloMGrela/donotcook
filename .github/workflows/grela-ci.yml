@@ -21,12 +21,12 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-      - name: Android Emulator Runner
-        uses: ReactiveCircus/android-emulator-runner@v2.9.0
-        with:
-          api-level: 29
-          arch: x86
-          target: google_apis
-          profile: Nexus 6
-          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
-          script: ./gradlew connectedCheck executeScreenshotTests -PprintBase64
+#      - name: Android Emulator Runner
+#        uses: ReactiveCircus/android-emulator-runner@v2.9.0
+#        with:
+#          api-level: 29
+#          arch: x86
+#          target: google_apis
+#          profile: Nexus 6
+#          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim
+#          script: ./gradlew connectedCheck executeScreenshotTests -PprintBase64

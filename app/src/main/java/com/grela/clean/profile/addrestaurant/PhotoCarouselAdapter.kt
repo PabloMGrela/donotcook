@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.grela.clean.R
+import com.grela.clean.setSingleClickListener
 import kotlinx.android.synthetic.main.photo_row.view.*
 
 class PhotoCarouselAdapter(val list: MutableList<Bitmap>) :
@@ -38,12 +39,24 @@ class PhotoCarouselAdapter(val list: MutableList<Bitmap>) :
         ImageViewHolder(inflater.inflate(R.layout.photo_row, parent, false))
 
     inner class ImageViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
+        private var isRowSelected = false
         fun bind(image: Bitmap) {
             with(itemView) {
                 restaurantPhoto.setImageBitmap(image)
+                setSingleClickListener {
+                    if (isRowSelected) {
+                        selectedPicture.setBackgroundResource(R.drawable.circle_shape_border_filled)
+                    } else {
+                        selectedPicture.setBackgroundResource(R.drawable.circle_shape_border)
+                    }
+                    isRowSelected = !isRowSelected
+                }
             }
         }
+    }
+
+    interface OnImageSelected {
+        fun onImageClicked()
     }
 
 }
