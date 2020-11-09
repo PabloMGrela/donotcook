@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.grela.clean.R
 import com.grela.clean.databinding.FragmentEditRestaurantBinding
 import com.grela.clean.mainlist.RestaurantViewModel
+import com.grela.clean.setSingleClickListener
 import com.squareup.picasso.Picasso
 import java.util.concurrent.TimeUnit
 
@@ -54,6 +56,10 @@ class EditRestaurantFragment : Fragment() {
                 editRestaurantLogoImage.transitionName = "${logo}logo"
                 editRestaurantRestaurantCoordinates.transitionName = "${distance}distance"
                 editRestaurantRestaurantAddress.transitionName = "${address}address"
+
+                editRestaurantEditMenu.setSingleClickListener {
+                    findNavController().navigate(R.id.editToMenus)
+                }
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {

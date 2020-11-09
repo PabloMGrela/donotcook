@@ -60,7 +60,7 @@ class RestaurantAdapter(
                 image = restaurant.image
                 price = restaurant.price
                 rating = restaurant.rating
-                if (isFav) {
+                if (restaurant.isFav) {
                     restaurantFav.progress = 1f
                 } else {
                     restaurantFav.progress = 0f

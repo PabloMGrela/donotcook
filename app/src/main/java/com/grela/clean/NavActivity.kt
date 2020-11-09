@@ -26,7 +26,7 @@ class NavActivity : AppCompatActivity() {
                     binding.navHostBottomNavigation.gone()
                     binding.navToolbar.gone()
                 }
-                R.id.restaurantDetailsFragment, R.id.addRestaurantFragment, R.id.manageRestaurantsFragment, R.id.editRestaurantFragment -> {
+                R.id.restaurantDetailsFragment, R.id.addRestaurantFragment, R.id.manageRestaurantsFragment, R.id.editRestaurantFragment, R.id.manageMenuFragment -> {
                     binding.navHostBottomNavigation.gone()
                     binding.navToolbar.decreaseAndGone()
                 }

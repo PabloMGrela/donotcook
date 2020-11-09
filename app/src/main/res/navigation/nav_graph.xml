@@ -52,7 +52,11 @@
         android:id="@+id/mapFragment"
         android:name="com.grela.clean.map.MapFragment"
         android:label="MapFragment"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map" >
+        <action
+            android:id="@+id/mapToDetails"
+            app:destination="@id/restaurantDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.grela.clean.profile.ProfileFragment"
@@ -87,5 +91,13 @@
         <argument
             android:name="selectedRestaurant"
             app:argType="com.grela.clean.mainlist.RestaurantViewModel" />
+        <action
+            android:id="@+id/editToMenus"
+            app:destination="@id/manageMenuFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/manageMenuFragment"
+        android:name="com.grela.clean.profile.managemenus.ManageMenuFragment"
+        android:label="ManageMenuFragment"
+        tools:layout="@layout/fragment_manage_menus" />
 </navigation>

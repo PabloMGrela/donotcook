@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="false"
+        android:gravity="center_vertical"
         android:foreground="?android:attr/selectableItemBackground"
         android:padding="16dp"
         android:text="@string/manage_restaurants"
