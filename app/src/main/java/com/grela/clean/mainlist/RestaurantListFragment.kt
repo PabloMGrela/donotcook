@@ -74,13 +74,13 @@ class RestaurantListFragment : Fragment() {
                 RestaurantListFragmentDirections.homeToDetails(sports)
 
             val extras = FragmentNavigatorExtras(
-                imageView to sports.image,
-                logoImage to sports.logo,
-                nameView to sports.name,
-                distanceView to sports.distance,
-                ratingView to sports.rating.toString(),
-                priceView to sports.price.toString(),
-                eurImage to sports.address
+                imageView to "${sports.image}image",
+                logoImage to "${sports.logo}logo",
+                nameView to "${sports.name}name",
+                distanceView to "${sports.distance}distance",
+                ratingView to "${sports.rating}rating",
+                priceView to "${sports.price}price",
+                eurImage to "${sports.address}address"
             )
 
             findNavController().navigate(direction, extras)

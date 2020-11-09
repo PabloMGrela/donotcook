@@ -9,6 +9,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import androidx.navigation.NavDirections
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.grela.clean.R
@@ -26,17 +27,16 @@ class ManageRestaurantsFragment : Fragment() {
             val direction: NavDirections =
                 ManageRestaurantsFragmentDirections.manageToEdit(restaurant)
 
-//            val extras = FragmentNavigatorExtras(
-//                imageView to restaurant.image,
-//                logoImage to restaurant.logo,
-//                nameView to restaurant.name,
-//                distanceView to restaurant.distance,
-//                ratingView to restaurant.rating.toString(),
-//                priceView to restaurant.price.toString(),
-//                eurImage to restaurant.address
-//            )
+            val extras = FragmentNavigatorExtras(
+                imageView to "${restaurant.image}image",
+                logoImage to "${restaurant.logo}logo",
+                nameView to "${restaurant.name}name",
+                distanceView to "${restaurant.distance}distance",
+                ratingView to "${restaurant.rating}rating",
+                priceView to "${restaurant.price}price"
+            )
 
-            findNavController().navigate(direction)
+            findNavController().navigate(direction, extras)
         }
     private val adapter = RestaurantAdapter(restaurantListener)
     override fun onCreateView(

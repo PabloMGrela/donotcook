@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.grela.clean.databinding.FragmentEditRestaurantBinding
 import com.grela.clean.mainlist.RestaurantViewModel
+import com.squareup.picasso.Picasso
 import java.util.concurrent.TimeUnit
 
 class EditRestaurantFragment : Fragment() {
@@ -38,6 +39,21 @@ class EditRestaurantFragment : Fragment() {
                 editRestaurantRestaurantAddress.text = address
                 editRestaurantRestaurantPhone.text = phone
                 editRestaurantRestaurantCoordinates.text = "${latLng.latitude},${latLng.longitude}"
+                if (logo.isNotBlank()) {
+                    Picasso.get()
+                        .load(logo)
+                        .into(editRestaurantLogoImage)
+                }
+                if (image.isNotBlank()) {
+                    Picasso.get()
+                        .load(image)
+                        .into(editRestaurantHeaderImage)
+                }
+
+                editRestaurantHeaderImage.transitionName = "${image}image"
+                editRestaurantLogoImage.transitionName = "${logo}logo"
+                editRestaurantRestaurantCoordinates.transitionName = "${distance}distance"
+                editRestaurantRestaurantAddress.transitionName = "${address}address"
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {

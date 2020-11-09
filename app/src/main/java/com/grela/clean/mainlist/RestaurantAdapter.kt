@@ -77,13 +77,13 @@ class RestaurantAdapter(
                         restaurantEuro
                     )
                 }
-                restaurantName.transitionName = restaurant.name
-                restaurantLogo.transitionName = restaurant.logo
-                restaurantImage.transitionName = restaurant.image
-                restaurantRating.transitionName = restaurant.rating.toString()
-                restaurantDistance.transitionName = restaurant.distance
-                restaurantPrice.transitionName = restaurant.price.toString()
-                restaurantEuro.transitionName = restaurant.address
+                restaurantName.transitionName = "${restaurant.name}name"
+                restaurantLogo.transitionName = "${restaurant.logo}logo"
+                restaurantImage.transitionName = "${restaurant.image}image"
+                restaurantRating.transitionName = "${restaurant.rating}rating"
+                restaurantDistance.transitionName = "${restaurant.distance}distance"
+                restaurantPrice.transitionName = "${restaurant.price}price"
+                restaurantEuro.transitionName = "${restaurant.address}address"
             }
         }
     }

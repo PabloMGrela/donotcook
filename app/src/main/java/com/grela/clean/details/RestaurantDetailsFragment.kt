@@ -85,14 +85,14 @@ class RestaurantDetailsFragment : Fragment() {
                 if (restaurant.menus.size == 1) {
                     restaurantMenuList.layoutManager = LinearLayoutManager(requireContext())
                 }
-                binding.detailsTopBar.title = name
-                binding.detailsTopBar.transitionName = name
-                detailsImage.transitionName = image
-                detailsLogo.transitionName = logo
-                detailsDistance.transitionName = distance
-                restaurantRating.transitionName = rating.toString()
-                detailsPrice.transitionName = price.toString()
-                resEur.transitionName = address
+                detailsTopBar.title = name
+                detailsTopBar.transitionName = "${name}name"
+                detailsImage.transitionName = "${image}image"
+                detailsLogo.transitionName = "${logo}logo"
+                detailsDistance.transitionName = "${distance}distance"
+                restaurantRating.transitionName = "${rating}rating"
+                detailsPrice.transitionName = "${price}price"
+                resEur.transitionName = "${address}address"
             }
         }
         binding.restaurantMenuList.animate().alpha(1f).apply { duration = 1200 }.start()

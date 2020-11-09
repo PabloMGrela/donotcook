@@ -11,13 +11,26 @@ data class RestaurantRemoteEntity(
     @SerializedName("latitude") val latitude: Double,
     @SerializedName("longitude") val longitude: Double,
     @SerializedName("rating") val rating: Float,
-    @SerializedName("logo") val logo: String,
-    @SerializedName("image") val image: String,
+    @SerializedName("logo_image") val logo: ImageRemoteEntity?,
+    @SerializedName("header_image") val image: ImageRemoteEntity?,
     @SerializedName("phone") val phone: String,
     @SerializedName("address") val address: String,
     @SerializedName("menus") val menus: List<MenuRemoteEntity>,
     @SerializedName("is_favorite") val isFav: Boolean,
     @SerializedName("is_mine") val isMine: Boolean
+)
+
+data class ImageRemoteEntity(
+    @SerializedName("formats") val formats: FormatsRemoteEntity
+)
+
+data class FormatsRemoteEntity(
+    @SerializedName("small") val url: UrlRemoteEntity,
+    @SerializedName("thumbnail") val thumbUrl: UrlRemoteEntity
+)
+
+data class UrlRemoteEntity(
+    @SerializedName("url") val urlString: String
 )
 
 data class MenuRemoteEntity(
@@ -47,8 +60,8 @@ fun RestaurantRemoteEntity.toRestaurantDataEntity() = RestaurantDataEntity(
     latitude,
     longitude,
     rating,
-    logo.orEmpty(),
-    image.orEmpty(),
+    logo?.formats?.thumbUrl?.urlString.orEmpty(),
+    image?.formats?.url?.urlString.orEmpty(),
     phone,
     address,
     menus.toMenuDataEntityList(),
