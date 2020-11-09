@@ -32,9 +32,8 @@ class ProfileFragment : Fragment() {
                 ProfileStatus.LOGGED_IN -> showLoggedInLayout(it.name)
             }
         }
-        binding.profileAddRestaurantRow.transitionName = getString(R.string.add_restaurant)
-        binding.profileAddRestaurantRow.setSingleClickListener {
-            findNavController().navigate(R.id.profileToAddRestaurant)
+        binding.profileManageRestaurant.setSingleClickListener {
+            findNavController().navigate(R.id.profileToManage)
         }
         binding.profilePasswordField.apply {
             setOnEnterPressedListener { onLoginClicked() }
@@ -58,7 +57,7 @@ class ProfileFragment : Fragment() {
 
     private fun showLoggedInLayout(name: String) {
         binding.profileName.visible()
-        binding.profileAddRestaurantRow.visible()
+        binding.profileManageRestaurant.visible()
         binding.profileLogoutRow.visible()
         binding.profileName.text = name
 
@@ -69,7 +68,7 @@ class ProfileFragment : Fragment() {
 
     private fun showLoggedOutLayout() {
         binding.profileName.gone()
-        binding.profileAddRestaurantRow.gone()
+        binding.profileManageRestaurant.gone()
         binding.profileLogoutRow.gone()
 
         binding.profilePasswordField.visible()

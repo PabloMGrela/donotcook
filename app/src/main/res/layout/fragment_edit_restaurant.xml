@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/editRestaurantTopBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_close_24" />
+
+    <TextView
+        android:id="@+id/editRestaurantLogoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/logo"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editRestaurantTopBar" />
+
+    <ImageView
+        android:id="@+id/editRestaurantLogoImage"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="@id/editRestaurantLogoLabel"
+        app:layout_constraintTop_toBottomOf="@id/editRestaurantLogoLabel"
+        tools:src="@drawable/aliadie" />
+
+    <TextView
+        android:id="@+id/editRestaurantHeaderLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/header"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/editRestaurantLogoImage"
+        app:layout_constraintTop_toTopOf="@id/editRestaurantLogoLabel" />
+
+    <ImageView
+        android:id="@+id/editRestaurantHeaderImage"
+        android:layout_width="0dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/editRestaurantHeaderLabel"
+        app:layout_constraintTop_toTopOf="@id/editRestaurantLogoImage"
+        tools:src="@drawable/aliadie" />
+
+    <com.grela.clean.components.GrelaEditText
+        android:id="@+id/editRestaurantRestaurantName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:hint="@string/restaurant_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/editRestaurantLogoLabel"
+        app:layout_constraintTop_toBottomOf="@id/editRestaurantLogoImage" />
+
+    <com.grela.clean.components.GrelaEditText
+        android:id="@+id/editRestaurantRestaurantPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="phone"
+        app:hint="@string/restaurant_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/editRestaurantLogoLabel"
+        app:layout_constraintTop_toBottomOf="@id/editRestaurantRestaurantName" />
+
+    <com.grela.clean.components.GrelaEditText
+        android:id="@+id/editRestaurantRestaurantAddress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="phone"
+        app:hint="@string/restaurant_address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/editRestaurantRestaurantPhone"
+        app:layout_constraintTop_toBottomOf="@id/editRestaurantRestaurantPhone" />
+
+    <com.grela.clean.components.GrelaEditText
+        android:id="@+id/editRestaurantRestaurantCoordinates"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:inputType="phone"
+        app:hint="@string/restaurant_coords"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/editRestaurantRestaurantPhone"
+        app:layout_constraintTop_toBottomOf="@id/editRestaurantRestaurantAddress" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:checked="true"
+        android:text="@string/activated"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editRestaurantRestaurantCoordinates" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editRestaurantSaveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        app:layout_constraintBottom_toTopOf="@id/editRestaurantDeleteButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editRestaurantDeleteButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/delete"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="@android:color/holo_red_dark" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

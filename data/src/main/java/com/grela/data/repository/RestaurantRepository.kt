@@ -13,7 +13,9 @@ class RestaurantRepository(
     private val doNotCookLocalDataSource: DoNotCookLocalDataSourceContract
 ) : RestaurantRepositoryContract {
     override fun getRestaurants(): DataResult<Error, List<RestaurantDomainEntity>> {
-        return when (val result = doNotCookRemoteDataSource.getRestaurants()) {
+        val localProfile = doNotCookLocalDataSource.getProfile()
+        val token = if (localProfile is DataResult.Success) localProfile.r.token else ""
+        return when (val result = doNotCookRemoteDataSource.getRestaurants(token)) {
             is DataResult.Error -> result
             is DataResult.Success -> DataResult.Success(result.r.toRestaurantDomainEntityList())
         }
@@ -35,5 +37,15 @@ class RestaurantRepository(
 
     override fun logout() {
         doNotCookLocalDataSource.deleteProfile()
+    }
+
+    override fun getOwnRestaurants(): DataResult<Error, List<RestaurantDomainEntity>> {
+        val localProfile = doNotCookLocalDataSource.getProfile()
+        val token = if (localProfile is DataResult.Success) localProfile.r.token else ""
+        return when (val result = doNotCookRemoteDataSource.getRestaurants(token)) {
+            is DataResult.Error -> result
+            is DataResult.Success -> DataResult.Success(result.r.filter { it.isMine }
+                .toRestaurantDomainEntityList())
+        }
     }
 }

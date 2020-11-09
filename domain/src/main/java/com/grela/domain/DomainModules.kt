@@ -3,6 +3,7 @@ package com.grela.domain
 import com.grela.domain.interactor.GetRestaurantsUseCase
 import com.grela.domain.interactor.Invoker
 import com.grela.domain.interactor.UseCaseInvoker
+import com.grela.domain.interactor.profile.GetOwnRestaurantsUseCase
 import com.grela.domain.interactor.profile.GetUserUseCase
 import com.grela.domain.interactor.profile.LoginUseCase
 import com.grela.domain.interactor.profile.LogoutUseCase
@@ -14,6 +15,7 @@ object DomainModules {
         factory { LoginUseCase(get()) }
         factory { GetUserUseCase(get()) }
         factory { LogoutUseCase(get()) }
+        factory { GetOwnRestaurantsUseCase(get()) }
 
         factory<Invoker> { UseCaseInvoker() }
 

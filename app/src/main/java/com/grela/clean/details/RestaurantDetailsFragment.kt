@@ -20,10 +20,10 @@ import kotlin.math.roundToInt
 
 
 class RestaurantDetailsFragment : Fragment() {
-    private lateinit var sportsArgs: RestaurantViewModel
+    private lateinit var restaurant: RestaurantViewModel
     private lateinit var binding: FragmentRestaurantDetailsBinding
     private lateinit var adapter: MenuAdapter
-    private var phoneNumber = 0
+    private var phoneNumber = ""
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,7 +39,7 @@ class RestaurantDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val args = requireArguments()
-        sportsArgs = RestaurantDetailsFragmentArgs.fromBundle(args).selectedRestaurant
+        restaurant = RestaurantDetailsFragmentArgs.fromBundle(args).selectedRestaurant
         requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 goBack()
@@ -48,7 +48,7 @@ class RestaurantDetailsFragment : Fragment() {
         binding.detailsTopBar.setNavigationOnClickListener {
             goBack()
         }
-        with(sportsArgs) {
+        with(restaurant) {
             binding.detailsName.text = name
             binding.detailsDistance.text = distance
             Picasso.get().load(logo).into(binding.detailsLogo)
@@ -81,8 +81,8 @@ class RestaurantDetailsFragment : Fragment() {
                     requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), 200)
                 }
                 restaurantMenuList.adapter = adapter
-                adapter.updateData(sportsArgs.menus)
-                if (sportsArgs.menus.size == 1) {
+                adapter.updateData(restaurant.menus)
+                if (restaurant.menus.size == 1) {
                     restaurantMenuList.layoutManager = LinearLayoutManager(requireContext())
                 }
                 binding.detailsTopBar.title = name

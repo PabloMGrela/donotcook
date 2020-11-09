@@ -12,10 +12,11 @@ data class RestaurantDataEntity(
     val rating: Float,
     val logo: String,
     val image: String,
-    val phone: Int,
+    val phone: String,
     val address: String,
     val menus: List<MenuDataEntity>,
-    val isFav: Boolean
+    val isFav: Boolean,
+    val isMine: Boolean
 )
 
 data class MenuDataEntity(
@@ -52,7 +53,8 @@ fun RestaurantDataEntity.toRestaurantDomainEntity() = RestaurantDomainEntity(
     phone,
     address,
     menus.toMenuDomainEntityList(),
-    isFav
+    isFav,
+    isMine
 )
 
 fun List<RestaurantDataEntity>.toRestaurantDomainEntityList() =

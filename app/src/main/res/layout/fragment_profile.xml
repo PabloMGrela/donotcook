@@ -17,12 +17,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/profileAddRestaurantRow"
+        android:id="@+id/profileManageRestaurant"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="false"
+        android:foreground="?android:attr/selectableItemBackground"
         android:padding="16dp"
-        android:text="@string/add_restaurant"
-        android:transitionName="@string/add_restaurant"
+        android:text="@string/manage_restaurants"
         app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +39,7 @@
         app:hint="@string/username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileAddRestaurantRow" />
+        app:layout_constraintTop_toBottomOf="@id/profileManageRestaurant" />
 
     <com.grela.clean.components.GrelaEditText
         android:id="@+id/profilePasswordField"
@@ -63,13 +65,13 @@
 
     <TextView
         android:id="@+id/profileLogoutRow"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:padding="16dp"
         android:text="@string/logout"
-        android:textStyle="bold"
-        app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:textColor="@android:color/holo_red_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -59,13 +59,33 @@
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
-            android:id="@+id/profileToAddRestaurant"
-            app:destination="@id/addRestaurantFragment"
-            app:enterAnim="@anim/slide_up" />
+            android:id="@+id/profileToManage"
+            app:destination="@id/manageRestaurantsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addRestaurantFragment"
-        android:name="com.grela.clean.addrestaurant.AddRestaurantFragment"
+        android:name="com.grela.clean.profile.addrestaurant.AddRestaurantFragment"
         android:label="AddRestaurantFragment"
         tools:layout="@layout/fragment_add_restaurant" />
+    <fragment
+        android:id="@+id/manageRestaurantsFragment"
+        android:name="com.grela.clean.profile.managerestaurants.ManageRestaurantsFragment"
+        android:label="ManageRestaurantsFragment"
+        tools:layout="@layout/fragment_manage_restaurants">
+        <action
+            android:id="@+id/manageToAddRestaurant"
+            app:destination="@id/addRestaurantFragment" />
+        <action
+            android:id="@+id/manageToEdit"
+            app:destination="@id/editRestaurantFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editRestaurantFragment"
+        android:name="com.grela.clean.profile.managerestaurants.EditRestaurantFragment"
+        android:label="EditRestaurantFragment"
+        tools:layout="@layout/fragment_edit_restaurant">
+        <argument
+            android:name="selectedRestaurant"
+            app:argType="com.grela.clean.mainlist.RestaurantViewModel" />
+    </fragment>
 </navigation>

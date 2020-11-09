@@ -25,4 +25,11 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="manage_restaurants">Manage restaurants</string>
+    <string name="logo">Logo</string>
+    <string name="header">Header</string>
+    <string name="restaurant_coords">Coordinates</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="activated">Activated</string>
 </resources>

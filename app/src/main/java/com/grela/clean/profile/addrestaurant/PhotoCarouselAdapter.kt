@@ -1,4 +1,4 @@
-package com.grela.clean.addrestaurant
+package com.grela.clean.profile.addrestaurant
 
 import android.graphics.Bitmap
 import android.view.LayoutInflater

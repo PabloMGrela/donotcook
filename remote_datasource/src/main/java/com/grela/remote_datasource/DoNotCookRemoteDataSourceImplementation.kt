@@ -14,8 +14,10 @@ class DoNotCookRemoteDataSourceImplementation : DoNotCookRemoteDataSourceContrac
 
     private val api: StrapiAPI by inject()
 
-    override fun getRestaurants(): DataResult<Error, List<RestaurantDataEntity>> {
-        return safeCall({ api.getRestaurants() }, { list -> list.toRestaurantDataEntityList() })
+    override fun getRestaurants(token: String): DataResult<Error, List<RestaurantDataEntity>> {
+        return safeCall(
+            { api.getRestaurants(getAuthHeader(token)) },
+            { list -> list.toRestaurantDataEntityList() })
     }
 
     override fun login(username: String, pass: String): DataResult<Error, ProfileGeneralModel> {
@@ -24,4 +26,6 @@ class DoNotCookRemoteDataSourceImplementation : DoNotCookRemoteDataSourceContrac
             { profile -> profile.toProfileGeneralModel() })
     }
 
+
+    private fun getAuthHeader(token: String) = mapOf("Authorization" to "Bearer $token")
 }

@@ -8,10 +8,11 @@ data class RestaurantDomainEntity(
     val rating: Float,
     val logo: String,
     val image: String,
-    val phone: Int,
+    val phone: String,
     val address: String,
     val menus: List<MenuDomainEntity>,
-    val isFav: Boolean
+    val isFav: Boolean,
+    val isMine: Boolean
 )
 
 data class MenuDomainEntity(

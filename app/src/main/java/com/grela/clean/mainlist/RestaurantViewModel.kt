@@ -14,7 +14,7 @@ data class RestaurantViewModel(
     val price: Float,
     val distance: String,
     val rating: Float,
-    val phone: Int,
+    val phone: String,
     val address: String,
     val latLng: LatLng,
     val menus: List<MenuViewModel>,

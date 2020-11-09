@@ -82,13 +82,6 @@ class RestaurantListFragment : Fragment() {
                 priceView to sports.price.toString(),
                 eurImage to sports.address
             )
-//            val geo = Geocoder(requireContext(), Locale.getDefault())
-//            val addresses = geo.getFromLocationName(sports.address, 1)
-//            val address: Address = addresses[0]
-//            val longitude: Double = address.longitude
-//            val latitude: Double = address.latitude
-//
-//            Log.d("geocoder", "$latitude , $longitude")
 
             findNavController().navigate(direction, extras)
         }

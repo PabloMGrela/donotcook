@@ -1,4 +1,4 @@
-package com.grela.clean.addrestaurant
+package com.grela.clean.profile.addrestaurant
 
 data class RestaurantModel(
     val name: String,
