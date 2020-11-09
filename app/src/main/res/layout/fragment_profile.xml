@@ -37,6 +37,7 @@
         android:layout_margin="24dp"
         android:imeOptions="actionNext"
         app:hint="@string/username"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileManageRestaurant" />
