@@ -22,8 +22,8 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="false"
-        android:gravity="center_vertical"
         android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
         android:padding="16dp"
         android:text="@string/manage_restaurants"
         app:drawableEndCompat="@drawable/ic_baseline_arrow_forward_ios_24"
@@ -37,8 +37,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
         android:imeOptions="actionNext"
-        app:hint="@string/username"
         android:inputType="textEmailAddress"
+        app:hint="@string/username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileManageRestaurant" />
@@ -68,12 +68,23 @@
     <TextView
         android:id="@+id/profileLogoutRow"
         android:layout_width="wrap_content"
-        android:foreground="?android:attr/selectableItemBackground"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:foreground="?android:attr/selectableItemBackground"
         android:padding="16dp"
         android:text="@string/logout"
         android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/profileRegisterButton"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

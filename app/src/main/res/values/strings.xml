@@ -34,4 +34,5 @@
     <string name="activated">Activated</string>
     <string name="edit_menu">Edit menus</string>
     <string name="create_restaurant">Create</string>
+    <string name="register">Register</string>
 </resources>

@@ -46,6 +46,10 @@ class ProfileFragment : Fragment() {
         binding.profileLogoutRow.setSingleClickListener {
             viewModel.onLogoutClicked()
         }
+
+        binding.profileRegisterButton.setSingleClickListener {
+
+        }
     }
 
     private fun onLoginClicked() {
@@ -57,26 +61,30 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showLoggedInLayout(name: String, role: UserRole) {
-        binding.profileName.visible()
-        binding.profileLogoutRow.visible()
-        binding.profileName.text = name
-
-        if (role == UserRole.OWNER) {
-            binding.profileManageRestaurant.visible()
+        with(binding) {
+            profileName.visible()
+            profileLogoutRow.visible()
+            profileName.text = name
+            profileRegisterButton.gone()
+            profilePasswordField.gone()
+            profileUsernameField.gone()
+            profileLoginButton.gone()
+            if (role == UserRole.OWNER) {
+                profileManageRestaurant.visible()
+            }
         }
 
-        binding.profilePasswordField.gone()
-        binding.profileUsernameField.gone()
-        binding.profileLoginButton.gone()
     }
 
     private fun showLoggedOutLayout() {
-        binding.profileName.gone()
-        binding.profileManageRestaurant.gone()
-        binding.profileLogoutRow.gone()
-
-        binding.profilePasswordField.visible()
-        binding.profileUsernameField.visible()
-        binding.profileLoginButton.visible()
+        with(binding) {
+            profileName.gone()
+            profileManageRestaurant.gone()
+            profileLogoutRow.gone()
+            profileRegisterButton.visible()
+            profilePasswordField.visible()
+            profileUsernameField.visible()
+            profileLoginButton.visible()
+        }
     }
 }
