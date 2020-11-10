@@ -1,10 +1,15 @@
 package com.grela.clean
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.location.Location
+import android.util.Base64
+import android.util.Base64.encodeToString
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.google.android.libraries.maps.model.LatLng
+import java.io.ByteArrayOutputStream
 
 fun Location.getDistanceString(currentPosition: Location): String {
     return "${"%.2f".format(this.getDistance(currentPosition))} km"
@@ -75,6 +80,18 @@ fun View.invisible() {
 fun View.hideKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     imm.hideSoftInputFromWindow(windowToken, 0)
+}
+
+fun Bitmap.bitMapToString(): String {
+    val baos = ByteArrayOutputStream()
+    this.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+    val b = baos.toByteArray()
+    return encodeToString(b, Base64.DEFAULT)
+}
+
+fun String.toBitmap(): Bitmap {
+    val imageBytes = Base64.decode(this, 0)
+    return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 }
 
 class OnClickListenerSingleClickWrapper(private val inner: View.OnClickListener) :

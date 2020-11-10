@@ -9,6 +9,7 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.grela.clean.*
 import com.grela.clean.databinding.FragmentProfileBinding
+import com.grela.domain.model.UserRole
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
@@ -29,7 +30,7 @@ class ProfileFragment : Fragment() {
         viewModel.profileStatus.observe(this) {
             when (it.status) {
                 ProfileStatus.LOGGED_OUT -> showLoggedOutLayout()
-                ProfileStatus.LOGGED_IN -> showLoggedInLayout(it.name)
+                ProfileStatus.LOGGED_IN -> showLoggedInLayout(it.name, it.role)
             }
         }
         binding.profileManageRestaurant.setSingleClickListener {
@@ -55,11 +56,14 @@ class ProfileFragment : Fragment() {
         binding.profilePasswordField.hideKeyboard()
     }
 
-    private fun showLoggedInLayout(name: String) {
+    private fun showLoggedInLayout(name: String, role: UserRole) {
         binding.profileName.visible()
-        binding.profileManageRestaurant.visible()
         binding.profileLogoutRow.visible()
         binding.profileName.text = name
+
+        if (role == UserRole.OWNER) {
+            binding.profileManageRestaurant.visible()
+        }
 
         binding.profilePasswordField.gone()
         binding.profileUsernameField.gone()

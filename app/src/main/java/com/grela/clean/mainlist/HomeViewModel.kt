@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.grela.domain.DataResult
-import com.grela.domain.interactor.GetRestaurantsUseCase
+import com.grela.domain.interactor.restaurants.GetRestaurantsUseCase
 import com.grela.domain.model.RestaurantDomainEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

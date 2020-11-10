@@ -84,7 +84,7 @@ class MapFragment : Fragment() {
             })
             userLocation?.let { currentLatLng ->
                 val cameraPosition =
-                    CameraPosition.builder().zoom(13f).target(currentLatLng).build()
+                    CameraPosition.builder().zoom(15f).target(currentLatLng).build()
                 mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
             }
             if (markerList.isEmpty()) {

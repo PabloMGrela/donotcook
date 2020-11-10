@@ -9,6 +9,7 @@ import com.grela.domain.DataResult
 import com.grela.domain.interactor.profile.GetUserUseCase
 import com.grela.domain.interactor.profile.LoginUseCase
 import com.grela.domain.interactor.profile.LogoutUseCase
+import com.grela.domain.model.UserRole
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
@@ -31,7 +32,7 @@ class ProfileViewModel(
         viewModelScope.launch(dispatcher) {
             val result = getProfile.execute()
             if (result is DataResult.Success) {
-                setLoginStatus(result.r.userName)
+                setLoginStatus(result.r.userName, result.r.role)
             } else {
                 setLogoutStatus()
             }
@@ -42,7 +43,7 @@ class ProfileViewModel(
         viewModelScope.launch(dispatcher) {
             val result = loginUseCase.execute(user, pass)
             if (result is DataResult.Success) {
-                setLoginStatus(result.r.userName)
+                setLoginStatus(result.r.userName, result.r.role)
             } else {
                 setLogoutStatus()
             }
@@ -57,12 +58,12 @@ class ProfileViewModel(
         setLogoutStatus()
     }
 
-    private fun setLoginStatus(name: String) {
+    private fun setLoginStatus(name: String, role: UserRole) {
         context.getSharedPreferences(IS_AUTHENTICATED, Context.MODE_PRIVATE).edit()
             .putBoolean(
                 IS_AUTHENTICATED, true
             ).apply()
-        _profileStatus.postValue(Profile(ProfileStatus.LOGGED_IN, name))
+        _profileStatus.postValue(Profile(ProfileStatus.LOGGED_IN, name, role))
     }
 
     private fun setLogoutStatus() {
@@ -71,7 +72,7 @@ class ProfileViewModel(
                 IS_AUTHENTICATED, false
             ).apply()
         _profileStatus.postValue(
-            Profile((ProfileStatus.LOGGED_OUT))
+            Profile((ProfileStatus.LOGGED_OUT), "", UserRole.UNAUTH)
         )
     }
 

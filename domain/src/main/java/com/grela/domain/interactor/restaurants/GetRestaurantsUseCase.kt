@@ -1,6 +1,8 @@
-package com.grela.domain.interactor
+package com.grela.domain.interactor.restaurants
 
 import com.grela.domain.RestaurantRepositoryContract
+import com.grela.domain.interactor.Callback
+import com.grela.domain.interactor.UseCase
 import com.grela.domain.model.RestaurantDomainEntity
 
 

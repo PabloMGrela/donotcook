@@ -1,7 +1,7 @@
 package com.grela.presentation
 
 import com.grela.domain.DataResult
-import com.grela.domain.interactor.GetRestaurantsUseCase
+import com.grela.domain.interactor.restaurants.GetRestaurantsUseCase
 import com.grela.domain.interactor.Invoker
 import com.grela.domain.model.RestaurantDomainEntity
 

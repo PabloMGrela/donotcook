@@ -19,8 +19,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import android.widget.SimpleCursorAdapter
+import android.widget.Toast
 import androidx.cursoradapter.widget.CursorAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.common.api.ApiException
 import com.google.android.libraries.places.api.Places
@@ -30,11 +32,13 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.*
 import com.grela.clean.*
 import com.grela.clean.databinding.FragmentAddRestaurantBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
 
 
 class AddRestaurantFragment : Fragment() {
     private lateinit var binding: FragmentAddRestaurantBinding
+    private val viewModel: AddRestaurantViewModel by viewModel()
     lateinit var token: AutocompleteSessionToken
     lateinit var request: FindAutocompletePredictionsRequest
     lateinit var restaurantModel: RestaurantModel
@@ -54,24 +58,53 @@ class AddRestaurantFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.addRestaurantTopBar.setNavigationOnClickListener { findNavController().popBackStack() }
         token = AutocompleteSessionToken.newInstance()
         placesClient = Places.createClient(requireContext())
         configureSearch()
-        binding.addRestaurantButton.setSingleClickListener {
-            moveSearchView()
-        }
-        binding.editRestaurantLogoImage.setSingleClickListener {
-            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 200)
+        configureClicks()
+        with(binding) {
+            addRestaurantTopBar.setNavigationOnClickListener { findNavController().popBackStack() }
+            addRestaurantButton.setSingleClickListener {
+                moveSearchView()
+            }
+            createRestaurantButton.setSingleClickListener {
+                createRestaurantProgressBar.visible()
+                createRestaurantButton.isEnabled = false
+                editRestaurantLogoImage.setSingleClickListener { }
+                editRestaurantHeaderImage.setSingleClickListener { }
+                addRestaurantAddress.isEnabled = false
+                addRestaurantPhone.isEnabled = false
+                addRestaurantName.isEnabled = false
+                viewModel.onCreateRestaurantClicked(restaurantModel)
+            }
         }
 
-        binding.editRestaurantHeaderImage.setSingleClickListener {
-            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 201)
+        viewModel.success.observe(this) {
+            if (it) findNavController().popBackStack() else {
+                Toast.makeText(
+                    requireContext(),
+                    "Error",
+                    Toast.LENGTH_SHORT
+                ).show()
+                binding.createRestaurantProgressBar.gone()
+                configureClicks()
+            }
         }
-        binding.createRestaurantButton.setSingleClickListener {
+    }
 
+    private fun configureClicks() {
+        with(binding) {
+            addRestaurantAddress.isEnabled = true
+            addRestaurantPhone.isEnabled = true
+            addRestaurantName.isEnabled = true
+            createRestaurantButton.isEnabled = true
+            editRestaurantLogoImage.setSingleClickListener {
+                requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 200)
+            }
+            editRestaurantHeaderImage.setSingleClickListener {
+                requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 201)
+            }
         }
-
     }
 
     private fun configureSearch() {
@@ -184,17 +217,22 @@ class AddRestaurantFragment : Fragment() {
                 return@addOnSuccessListener
             }
             requestPictures(metada)
-            binding.addRestaurantName.text = place.name.orEmpty()
-            binding.addRestaurantAddress.text = place.address.orEmpty()
-            binding.addRestaurantPhone.text = place.phoneNumber.orEmpty()
-            restaurantModel = RestaurantModel(
-                place.name.orEmpty(),
-                place.address.orEmpty(),
-                place.latLng?.latitude?.toFloat() ?: 0f,
-                place.latLng?.longitude?.toFloat() ?: 0f,
-                place.rating?.toFloat() ?: 0f,
-                place.phoneNumber.orEmpty()
-            )
+            with(place) {
+
+                binding.addRestaurantName.text = name.orEmpty()
+                binding.addRestaurantAddress.text = address.orEmpty()
+                binding.addRestaurantPhone.text = phoneNumber.orEmpty()
+                restaurantModel = RestaurantModel(
+                    name.orEmpty(),
+                    address.orEmpty(),
+                    latLng?.latitude?.toFloat() ?: 0f,
+                    latLng?.longitude?.toFloat() ?: 0f,
+                    rating?.toFloat() ?: 0f,
+                    phoneNumber.orEmpty(),
+                    null,
+                    null
+                )
+            }
             Log.d("restaurant", restaurantModel.toString())
         }.addOnFailureListener { exception ->
             if (exception is ApiException) {
@@ -211,6 +249,7 @@ class AddRestaurantFragment : Fragment() {
             .addOnSuccessListener { fetchPhotoResponse: FetchPhotoResponse ->
                 val bitmap = fetchPhotoResponse.bitmap
                 binding.editRestaurantHeaderImage.setImageBitmap(bitmap)
+                restaurantModel.header = bitmap.bitMapToString()
             }
         binding.editRestaurantLogoImage.setImageResource(R.drawable.ic_baseline_add_a_photo_24)
     }
@@ -230,12 +269,12 @@ class AddRestaurantFragment : Fragment() {
                     cursor.moveToFirst()
                     val columnIndex = cursor.getColumnIndex(filePathColumn[0])
                     val picturePath = cursor.getString(columnIndex)
-                    val picture = BitmapFactory.decodeFile(
-                        picturePath
-                    )
+                    val picture = BitmapFactory.decodeFile(picturePath)
                     if (requestCode == 1) {
+                        restaurantModel.logo = picture.bitMapToString()
                         binding.editRestaurantLogoImage.setImageBitmap(picture)
                     } else {
+                        restaurantModel.header = picture.bitMapToString()
                         binding.editRestaurantHeaderImage.setImageBitmap(picture)
                     }
                     cursor.close()

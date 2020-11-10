@@ -35,6 +35,8 @@ class RestaurantAdapter(
 
     override fun getItemCount(): Int = list.size
 
+    override fun getItemId(position: Int): Long = list[position].name.hashCode().toLong()
+
     override fun getItemViewType(position: Int): Int {
         return when (position) {
             else -> ITEM_TYPE

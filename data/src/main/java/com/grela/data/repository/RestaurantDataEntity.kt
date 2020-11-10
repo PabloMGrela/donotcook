@@ -1,8 +1,8 @@
-package com.grela.clean.profile.addrestaurant
+package com.grela.data.repository
 
 import com.grela.domain.interactor.restaurants.RestaurantDomainModel
 
-data class RestaurantModel(
+data class RestaurantDataModel(
     val name: String,
     val address: String,
     val latitude: Float,
@@ -13,6 +13,6 @@ data class RestaurantModel(
     var header: String?
 )
 
-fun RestaurantModel.toRestaurantDomainModel() = RestaurantDomainModel(
+fun RestaurantDomainModel.toRestaurantDataModel() = RestaurantDataModel(
     name, address, latitude, longitude, rating, phone, logo, header
 )

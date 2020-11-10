@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.grela.data.model.MenuDataEntity
 import com.grela.data.model.RestaurantDataEntity
 import com.grela.data.model.SectionDataEntity
+import com.grela.data.repository.RestaurantDataModel
 
 data class RestaurantRemoteEntity(
     @SerializedName("id") val id: Int,
@@ -21,6 +22,7 @@ data class RestaurantRemoteEntity(
 )
 
 data class ImageRemoteEntity(
+    @SerializedName("id") val imageId: Int,
     @SerializedName("formats") val formats: FormatsRemoteEntity
 )
 
@@ -61,7 +63,9 @@ fun RestaurantRemoteEntity.toRestaurantDataEntity() = RestaurantDataEntity(
     longitude,
     rating,
     logo?.formats?.thumbUrl?.urlString.orEmpty(),
+    logo?.let { it.imageId } ?: 0,
     image?.formats?.url?.urlString.orEmpty(),
+    image?.let { it.imageId } ?: 0,
     phone,
     address,
     menus.toMenuDataEntityList(),
@@ -70,3 +74,17 @@ fun RestaurantRemoteEntity.toRestaurantDataEntity() = RestaurantDataEntity(
 )
 
 fun List<RestaurantRemoteEntity>.toRestaurantDataEntityList() = map { it.toRestaurantDataEntity() }
+
+fun RestaurantDataModel.toRestaurantRemoteEntity() = RestaurantRemoteEntity(
+    0,
+    name,
+    latitude.toDouble(),
+    longitude.toDouble(),
+    rating,
+    null, null,
+    phone,
+    address,
+    emptyList(),
+    false,
+    true
+)
