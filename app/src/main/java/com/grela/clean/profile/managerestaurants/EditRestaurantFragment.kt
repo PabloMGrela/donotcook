@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import com.grela.clean.R
 import com.grela.clean.databinding.FragmentEditRestaurantBinding
 import com.grela.clean.mainlist.RestaurantViewModel
 import com.grela.clean.setSingleClickListener
@@ -56,9 +56,11 @@ class EditRestaurantFragment : Fragment() {
                 editRestaurantLogoImage.transitionName = "${logo}logo"
                 editRestaurantRestaurantCoordinates.transitionName = "${distance}distance"
                 editRestaurantRestaurantAddress.transitionName = "${address}address"
-
+                editRestaurantRestaurantCoordinates.transitionName = "${latLng}latlng"
                 editRestaurantEditMenu.setSingleClickListener {
-                    findNavController().navigate(R.id.editToMenus)
+                    val direction: NavDirections =
+                        EditRestaurantFragmentDirections.editToAddMenu(restaurant)
+                    findNavController().navigate(direction)
                 }
             }
         }

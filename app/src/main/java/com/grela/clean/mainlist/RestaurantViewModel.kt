@@ -22,9 +22,14 @@ data class RestaurantViewModel(
 ) : Serializable
 
 data class MenuViewModel(
+    val name: String,
     val price: Float,
     val dessertAndCoffee: Boolean,
-    val sections: List<SectionViewModel>
+    val sections: List<SectionViewModel>,
+    val date: String,
+    val hasDrink: Boolean,
+    val hasBread: Boolean,
+    val hasDessert: Boolean
 ) : Serializable
 
 data class SectionViewModel(
@@ -38,7 +43,16 @@ fun SectionDomainEntity.toSectionViewModelEntity() =
 fun List<SectionDomainEntity>.toSectionViewModelEntityList() = map { it.toSectionViewModelEntity() }
 
 fun MenuDomainEntity.toMenuViewModelEntity() =
-    MenuViewModel(price, dessertAndCoffee, sections.toSectionViewModelEntityList())
+    MenuViewModel(
+        name,
+        price,
+        dessertAndCoffee,
+        sections.toSectionViewModelEntityList(),
+        date,
+        hasDrink,
+        hasBread,
+        hasDessert
+    )
 
 fun List<MenuDomainEntity>.toMenuViewModelEntityList() =
     map { it.toMenuViewModelEntity() }

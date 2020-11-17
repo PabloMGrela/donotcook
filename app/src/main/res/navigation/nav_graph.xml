@@ -52,7 +52,7 @@
         android:id="@+id/mapFragment"
         android:name="com.grela.clean.map.MapFragment"
         android:label="MapFragment"
-        tools:layout="@layout/fragment_map" >
+        tools:layout="@layout/fragment_map">
         <action
             android:id="@+id/mapToDetails"
             app:destination="@id/restaurantDetailsFragment" />
@@ -92,12 +92,32 @@
             android:name="selectedRestaurant"
             app:argType="com.grela.clean.mainlist.RestaurantViewModel" />
         <action
-            android:id="@+id/editToMenus"
-            app:destination="@id/manageMenuFragment" />
+            android:id="@+id/editToAddMenu"
+            app:destination="@id/addMenuOverviewFragment" />
     </fragment>
     <fragment
-        android:id="@+id/manageMenuFragment"
-        android:name="com.grela.clean.profile.managemenus.ManageMenuFragment"
-        android:label="ManageMenuFragment"
-        tools:layout="@layout/fragment_manage_menus" />
+        android:id="@+id/addMenuOverviewFragment"
+        android:name="com.grela.clean.profile.menusection.AddMenuOverviewFragment"
+        android:label="AddMenuFragment"
+        tools:layout="@layout/fragment_add_menu_overview">
+        <argument
+            android:name="selectedRestaurant"
+            app:argType="com.grela.clean.mainlist.RestaurantViewModel" />
+        <action
+            android:id="@+id/action_addMenuOverviewFragment_to_addMenuFragment"
+            app:destination="@id/addMenuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMenuFragment"
+        tools:layout="@layout/fragment_add_menu"
+        android:name="com.grela.clean.profile.menusection.AddMenuFragment"
+        android:label="AddMenuFragment" >
+        <argument
+            android:name="selectedMenu"
+            app:argType="com.grela.clean.mainlist.MenuViewModel"
+            app:nullable="true" />
+        <argument
+            android:name="selectedDate"
+            app:argType="long" />
+    </fragment>
 </navigation>

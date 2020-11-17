@@ -35,4 +35,15 @@
     <string name="edit_menu">Edit menus</string>
     <string name="create_restaurant">Create</string>
     <string name="register">Register</string>
+    <string name="price">Price</string>
+    <string name="menu_name">Menu name</string>
+    <string name="date">Date</string>
+    <string name="included">Includes</string>
+    <string name="bread">Bread</string>
+    <string name="drink">Drink</string>
+    <string name="dessert">Dessert</string>
+    <string name="coffee">Coffee</string>
+    <string name="coffee_or_dessert">Dessert or coffee</string>
+    <string name="add_menu">Add menu</string>
+    <string name="select_date">Menus</string>
 </resources>

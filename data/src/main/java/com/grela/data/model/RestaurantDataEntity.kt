@@ -23,9 +23,14 @@ data class RestaurantDataEntity(
 
 data class MenuDataEntity(
     val id: Int,
+    val name: String,
     val price: Float,
     val dessertAndCoffee: Boolean,
-    val sections: List<SectionDataEntity>
+    val sections: List<SectionDataEntity>,
+    val date: String,
+    val hasDrink: Boolean,
+    val hasBread: Boolean,
+    val hasDessert: Boolean
 )
 
 data class SectionDataEntity(
@@ -40,7 +45,7 @@ fun SectionDataEntity.toSectionDomainEntity() =
 fun List<SectionDataEntity>.toSectionDomainEntityList() = map { it.toSectionDomainEntity() }
 
 fun MenuDataEntity.toMenuDomainEntity() =
-    MenuDomainEntity(id, price, dessertAndCoffee, sections.toSectionDomainEntityList())
+    MenuDomainEntity(id, name, price, dessertAndCoffee, sections.toSectionDomainEntityList(), date, hasDrink, hasBread, hasDessert)
 
 fun List<MenuDataEntity>.toMenuDomainEntityList() = map { it.toMenuDomainEntity() }
 

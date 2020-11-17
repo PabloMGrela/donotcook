@@ -17,9 +17,14 @@ data class RestaurantDomainEntity(
 
 data class MenuDomainEntity(
     val id: Int,
+    val name: String,
     val price: Float,
     val dessertAndCoffee: Boolean,
-    val sections: List<SectionDomainEntity>
+    val sections: List<SectionDomainEntity>,
+    val date: String,
+    val hasDrink: Boolean,
+    val hasBread: Boolean,
+    val hasDessert: Boolean
 )
 
 data class SectionDomainEntity(
