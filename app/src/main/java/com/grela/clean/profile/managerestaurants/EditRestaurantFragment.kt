@@ -57,21 +57,17 @@ class EditRestaurantFragment : Fragment() {
                 editRestaurantRestaurantCoordinates.transitionName = "${distance}distance"
                 editRestaurantRestaurantAddress.transitionName = "${address}address"
                 editRestaurantRestaurantCoordinates.transitionName = "${latLng}latlng"
-                editRestaurantEditMenu.setSingleClickListener {
-                    val direction: NavDirections =
-                        EditRestaurantFragmentDirections.editToAddMenu(restaurant)
-                    findNavController().navigate(direction)
+                editRestaurantTopBar.setNavigationOnClickListener {
+                    goBack()
                 }
             }
+
         }
         requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 goBack()
             }
         })
-        binding.editRestaurantTopBar.setNavigationOnClickListener {
-            goBack()
-        }
     }
 
     private fun goBack() {

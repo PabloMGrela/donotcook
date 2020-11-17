@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.grela.clean.R
 import com.grela.clean.databinding.FragmentManageRestaurantsBinding
 import com.grela.clean.mainlist.RestaurantAdapter
+import com.grela.clean.mainlist.RestaurantViewModel
 import com.grela.clean.setSingleClickListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit
@@ -38,7 +39,7 @@ class ManageRestaurantsFragment : Fragment() {
 
             findNavController().navigate(direction, extras)
         }
-    private val adapter = RestaurantAdapter(restaurantListener)
+    private lateinit var adapter: RestaurantAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,6 +55,14 @@ class ManageRestaurantsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.onViewCreated()
+        adapter = RestaurantAdapter(restaurantListener, object : RestaurantAdapter.OnEditMenuClickListener{
+            override fun onEditRestaurantClicked(restaurant: RestaurantViewModel) {
+                val direction: NavDirections =
+                    ManageRestaurantsFragmentDirections.manageToEditMenu(restaurant)
+                findNavController().navigate(direction)
+            }
+
+        })
         requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 goBack()

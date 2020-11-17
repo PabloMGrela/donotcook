@@ -82,6 +82,9 @@
         <action
             android:id="@+id/manageToEdit"
             app:destination="@id/editRestaurantFragment" />
+        <action
+            android:id="@+id/manageToEditMenu"
+            app:destination="@id/addMenuOverviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/editRestaurantFragment"
@@ -91,9 +94,6 @@
         <argument
             android:name="selectedRestaurant"
             app:argType="com.grela.clean.mainlist.RestaurantViewModel" />
-        <action
-            android:id="@+id/editToAddMenu"
-            app:destination="@id/addMenuOverviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/addMenuOverviewFragment"

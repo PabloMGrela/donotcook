@@ -5,9 +5,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.grela.clean.components.RestaurantCardView
+import com.grela.clean.gone
+import com.grela.clean.setSingleClickListener
+import com.grela.clean.visible
 
 class RestaurantAdapter(
-    private val onClickListener: OnClickListener
+    private val onClickListener: OnClickListener,
+    private val onEditMenuClickListener: OnEditMenuClickListener? = null
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -62,6 +66,13 @@ class RestaurantAdapter(
                 image = restaurant.image
                 price = restaurant.price
                 rating = restaurant.rating
+                onEditMenuClickListener?.let { listener ->
+                    editMenuButton.visible()
+                    restaurantDistance.gone()
+                    editMenuButton.setSingleClickListener {
+                        listener.onEditRestaurantClicked(restaurant)
+                    }
+                }
                 if (restaurant.isFav) {
                     restaurantFav.progress = 1f
                 } else {
@@ -110,6 +121,10 @@ class RestaurantAdapter(
             price,
             eurImage
         )
+    }
+
+    interface OnEditMenuClickListener {
+        fun onEditRestaurantClicked(restaurant: RestaurantViewModel)
     }
 
 }

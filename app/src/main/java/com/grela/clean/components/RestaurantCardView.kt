@@ -7,6 +7,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import com.airbnb.lottie.LottieAnimationView
+import com.google.android.material.button.MaterialButton
 import com.grela.clean.R
 import com.squareup.picasso.Picasso
 import kotlin.math.roundToInt
@@ -23,6 +24,7 @@ class RestaurantCardView(context: Context, attrs: AttributeSet? = null, defStyle
     val restaurantImage: ImageView by lazy { findViewById<ImageView>(R.id.restaurantImage) }
     val restaurantFav: LottieAnimationView by lazy { findViewById<LottieAnimationView>(R.id.restaurantFav) }
     val restaurantFavContainer: View by lazy { findViewById<View>(R.id.restaurantFavContainer) }
+    val editMenuButton: MaterialButton by lazy { findViewById<MaterialButton>(R.id.restaurantEditMenuButton) }
 
     var name: String? = null
         set(value) {
